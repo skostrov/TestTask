@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Isometric View">
+      <UniqueIdentifier>{e0b9cce2-a283-400b-afb3-6f124ce3b918}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Isometric View\Source Files">
+      <UniqueIdentifier>{5f081d2b-1d29-4140-81cd-43661dd0d4bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Isometric View\Header Files">
+      <UniqueIdentifier>{5237792c-1e09-4fe5-8d52-456559b13458}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="TestTask.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ZRotation.cpp">
+      <Filter>Isometric View\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="XRotation.cpp">
+      <Filter>Isometric View\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="YRotation.cpp">
+      <Filter>Isometric View\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ZProjection.cpp">
+      <Filter>Isometric View\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Isometric.cpp">
+      <Filter>Isometric View\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HgeManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TraversableMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AffineRotation.cpp">
+      <Filter>Isometric View\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="micropather.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Guard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Utilities.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ZRotation.h">
+      <Filter>Isometric View\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="XRotation.h">
+      <Filter>Isometric View\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="YRotation.h">
+      <Filter>Isometric View\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ZProjection.h">
+      <Filter>Isometric View\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Isometric.h">
+      <Filter>Isometric View\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HgeManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TraversableMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AffineRotation.h">
+      <Filter>Isometric View\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="micropather.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Guard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
