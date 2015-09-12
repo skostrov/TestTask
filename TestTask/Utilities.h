@@ -40,6 +40,23 @@ struct Vector2
 {
 	float x;
 	float y;
+
+	Vector2(float x_ = 0, float y_ = 0) : x(x_), y(y_) {}
+
+	Vector2 operator +(const Vector2& other)
+	{
+		return Vector2 { x + other.x, y + other.y };
+	}
+
+	Vector2 operator -(const Vector2& other)
+	{
+		return Vector2 { x - other.x, y - other.y } ;
+	}
+
+	Vector2 operator *(float scalar)
+	{
+		return Vector2 { x * scalar, y * scalar };
+	}
 };
 
 struct Vector3
@@ -47,19 +64,41 @@ struct Vector3
 	float x;
 	float y;
 	float z;
+
+	Vector3(float x_ = 0, float y_ = 0, float z_ = 0) : x(x_), y(y_), z(z_) {}
+
+	Vector3 operator +(const Vector3& other)
+	{
+		return Vector3 { x + other.x, y + other.y, z + other.z };
+	}
+
+	Vector3 operator -(const Vector3& other)
+	{
+		return Vector3 { x - other.x, y - other.y, z - other.z };
+	}
+
+	Vector3 operator *(float scalar)
+	{
+		return Vector3 { x * scalar, y * scalar, z * scalar };
+	}
 };
 
 struct iVector2
 {
 	int i;
 	int j;
-};
 
-struct iVector3
-{
-	int i;
-	int j;
-	int k;
+	iVector2(int i_ = 0, int j_ = 0) : i(i_), j(j_) {}
+
+	iVector2 operator + (const iVector2& other)
+	{
+		return iVector2 { i + other.i, j + other.j };
+	}
+
+	iVector2 operator - (const iVector2& other)
+	{
+		return iVector2 { i - other.i, j - other.j };
+	}
 };
 
 inline float DegToRad(float angle)

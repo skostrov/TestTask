@@ -2,10 +2,8 @@
 #include "Tile.h"
 
 
-Character::Character(TraversableMap* grid_, const iVector2& startPos, HTEXTURE texture) : grid(grid_), currentPos(startPos)
+Character::Character(TraversableMap* grid_, const iVector2& startPos, HTEXTURE texture) : grid(grid_), currentPos(startPos), pather(grid)
 {
-	pather = new micropather::MicroPather(grid);
-
 	quad.blend = BLEND_ALPHABLEND | BLEND_COLORMUL | BLEND_ZWRITE;
 
 	quad.tex = texture;
@@ -16,7 +14,6 @@ Character::Character(TraversableMap* grid_, const iVector2& startPos, HTEXTURE t
 
 Character::~Character()
 {
-	delete pather;
 }
 
 void Character::Initiate(HGE* hge, const Vector3& center)
@@ -38,7 +35,7 @@ void Character::Release(HGE* hge)
 
 void Character::HandleEvent(HGE* hge, hgeInputEvent* inputEvent)
 {
-	if ((inputEvent->type == INPUT_MBUTTONDOWN))
+	if (inputEvent->type == INPUT_MBUTTONDOWN)
 	{
 		if (inputEvent->key == HGEK_LBUTTON)
 		{		
@@ -61,7 +58,7 @@ void Character::HandleEvent(HGE* hge, hgeInputEvent* inputEvent)
 		}
 		else if (inputEvent->key == HGEK_RBUTTON)
 		{
-			pather->Reset();
+			pather.Reset();
 
 			if (!currentPath.empty())
 			{
@@ -115,11 +112,10 @@ void Character::Update(float dt)
 				SetVelocity( { 5 * (nextTileCenter.x - imCenter.x), 5 * (nextTileCenter.y - imCenter.y) } );
 			}
 		}
+
+		imCenter.x += velocity.x * dt;
+		imCenter.y += velocity.y * dt;
 	}
-
-	imCenter.x += velocity.x * dt;
-	imCenter.y += velocity.y * dt;
-
 }
 
 void Character::Render(HGE* hge)
@@ -137,7 +133,7 @@ int Character::FindPath(const iVector2& index, vector<void*>& foundPath, float& 
 	void* startNode = GraphFormat::IndexToNode(currentPos);
 	void* finishNode = GraphFormat::IndexToNode(index);
 
-	return pather->Solve(startNode, finishNode, &foundPath, &pathCost);
+	return pather.Solve(startNode, finishNode, &foundPath, &pathCost);
 }
 
 void Character::SetFoundPathAsCurrent(const vector<void*>& foundPath)

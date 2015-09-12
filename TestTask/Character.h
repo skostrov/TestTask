@@ -22,8 +22,6 @@ public:
 
 	void Render(HGE* hge) override;
 
-	int FindPath(const iVector2& index, vector<void*>& foundPath, float& pathCost);
-
 	void SetFoundPathAsCurrent(const vector<void*>& foundPath);
 
 	void SetVelocity(const Vector2& velocity_);
@@ -32,6 +30,8 @@ public:
 	virtual void OccupyTile();
 
 protected:
+
+	int FindPath(const iVector2& index, vector<void*>& foundPath, float& pathCost);
 
 	const float size = 16.0f;				// ѕоловина стороны
 											// обрамл€ющего квадрата
@@ -43,7 +43,7 @@ protected:
 	iVector2 currentPos;					// »ндекс тайла, на котором в данный
 											// момент находитс€ персонаж
 
-	micropather::MicroPather* pather;
+	micropather::MicroPather pather;
 	vector<iVector2> currentPath;
 
 	Vector2 imCenter;						// Ёкранные координаты центра персонажа
