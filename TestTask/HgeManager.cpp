@@ -1,6 +1,7 @@
 #include "HgeManager.h"
 #include "TraversableMap.h"
 #include "Character.h"
+#include "Guard.h"
 
 
 HgeManager* HgeManager::instance = nullptr;
@@ -113,16 +114,24 @@ bool HgeManager::Initiate()
 
 void HgeManager::Start()
 {
-	HTEXTURE texture = hge->Texture_Load("greenball.png");
+	HTEXTURE playerTexture = hge->Texture_Load("greenball.png");
+	HTEXTURE guardTexture = hge->Texture_Load("redball.png");
 
-	SceneObject* gameMap = new TraversableMap();
-	SceneObject* ch = new Character((TraversableMap*)gameMap, { 0, 0 }, texture);
+	TraversableMap* gameMap = new TraversableMap();
+	Character* player = new Character(gameMap, { 0, 0 }, playerTexture);
+	Guard* guard = new Guard(gameMap, { 10, 10 }, guardTexture, GuardRouteType::CIRCLE);
+	
+	gameMap->AddListener(player);
+	gameMap->AddListener(guard);
+
 
 	gameMap->Initiate(hge, { 0, 0, 0 } );
-	ch->Initiate(hge, { 0, 0, 0 } );
+	player->Initiate(hge, { 0, 0, 0 });
+	guard->Initiate(hge, { 0, 0, 0 });
 
 	objects->push_back(gameMap);
-	objects->push_back(ch);
+	objects->push_back(player);
+	objects->push_back(guard);
 
 	hge->System_Start();
 }

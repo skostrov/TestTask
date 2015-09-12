@@ -28,6 +28,7 @@ using namespace std;
 const int mapSize = 20;
 
 const float Pi = 3.14159265f;
+const float Eps = 0.5f;
 
 const DWORD White = 0xFFFFFFFF;
 const DWORD Orange = 0xFFFFA000;
@@ -43,19 +44,25 @@ struct Vector2
 
 	Vector2(float x_ = 0, float y_ = 0) : x(x_), y(y_) {}
 
-	Vector2 operator +(const Vector2& other)
+	Vector2 operator +(const Vector2& other) const
 	{
 		return Vector2 { x + other.x, y + other.y };
 	}
 
-	Vector2 operator -(const Vector2& other)
+	Vector2 operator -(const Vector2& other) const
 	{
 		return Vector2 { x - other.x, y - other.y } ;
 	}
 
-	Vector2 operator *(float scalar)
+	Vector2 operator *(float scalar) const
 	{
 		return Vector2 { x * scalar, y * scalar };
+	}
+
+	void operator +=(const Vector2& other)
+	{
+		x += other.x;
+		y += other.y;
 	}
 };
 
@@ -98,6 +105,16 @@ struct iVector2
 	iVector2 operator - (const iVector2& other)
 	{
 		return iVector2 { i - other.i, j - other.j };
+	}
+
+	bool operator == (const iVector2& other) const
+	{
+		return (i == other.i) && (j == other.j);
+	}
+
+	bool operator != (const iVector2& other) const
+	{
+		return !(*this == other);
 	}
 };
 

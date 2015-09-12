@@ -2,11 +2,12 @@
 
 #include "Utilities.h"
 #include "SceneObject.h"
+#include "MapListener.h"
 #include "micropather.h"
 #include "TraversableMap.h"
 
 
-class Character : public SceneObject
+class Character : public SceneObject, public MapListener
 {
 
 public:
@@ -22,16 +23,19 @@ public:
 
 	void Render(HGE* hge) override;
 
+	void OnMapChanged() override;
+
 	void SetFoundPathAsCurrent(const vector<void*>& foundPath);
 
-	void SetVelocity(const Vector2& velocity_);
-	void Stop();
+	virtual void OccupyTile(const iVector2& index);
+	virtual void FreeTile(const iVector2& index);
 
-	virtual void OccupyTile();
+	bool IsMoving() const;
+	void Move(float dt);
 
 protected:
 
-	int FindPath(const iVector2& index, vector<void*>& foundPath, float& pathCost);
+	int FindPath(vector<void*>& foundPath);
 
 	const float size = 16.0f;				// ѕоловина стороны
 											// обрамл€ющего квадрата
@@ -51,7 +55,10 @@ protected:
 
 	hgeQuad quad;							// ќбрамл€ющий квадрат
 
-	Vector2 velocity;
+	const float velocity = 10.0f;
+
+	iVector2 nextPos;
+	iVector2 destinationPos;
 
 };
 

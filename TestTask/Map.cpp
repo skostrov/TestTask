@@ -66,6 +66,7 @@ void Map::HandleEvent(HGE* hge, hgeInputEvent* inputEvent)
 				if (j.CheckHit(point))
 				{
 					j.HandleEvent(hge, inputEvent);
+					InformListeners();
 				}
 			}
 		}
@@ -96,6 +97,11 @@ void Map::Render(HGE* hge)
 			j.Render(hge);
 		}
 	}
+}
+
+void Map::AddListener(MapListener* listener)
+{
+	listeners.push_back(listener);
 }
 
 void Map::InitiateTile(Tile& tile, const iVector2& index, HGE* hge)
@@ -140,5 +146,13 @@ iVector2 Map::GetSelectedTileIndex(const Vector2& point) const
 Tile& Map::GetTileByIndex(const iVector2& index)
 {
 	return grid[index.i][index.j];
+}
+
+void Map::InformListeners() const
+{
+	for (auto& i : listeners)
+	{
+		i->OnMapChanged();
+	}
 }
 

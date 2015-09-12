@@ -48,11 +48,11 @@ public:
 
 	bool IsOccupiedByPlayer() const;
 	void SetOccupiedByPlayer();
+	void SetFreeOfPlayer();
 
 	bool IsOccupiedByGuard() const;
 	void SetOccupiedByGuard();
-
-	void SetFree();
+	void SetFreeOfGuard();
 
 private:
 

@@ -2,6 +2,7 @@
 
 #include "Utilities.h"
 #include "SceneObject.h"
+#include "MapListener.h"
 #include "Tile.h"
 
 
@@ -21,6 +22,8 @@ public:
 
 	void Render(HGE* hge) override;
 
+	void AddListener(MapListener* listener);
+
 	void InitiateTile(Tile& tile, const iVector2& index, HGE* hge);
 
 	iVector2 GetSelectedTileIndex(const Vector2& point) const;
@@ -38,6 +41,10 @@ protected:
 													// проекции и смещения в центр экрана
 
 	Tile grid[mapSize][mapSize];
+
+	list<MapListener*> listeners;
+
+	void InformListeners() const;
 
 };
 

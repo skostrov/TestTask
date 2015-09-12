@@ -69,6 +69,12 @@
     <ClCompile Include="Guard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MapListener.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GuardRoute.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utilities.h">
@@ -114,6 +120,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Guard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MapListener.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GuardRoute.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

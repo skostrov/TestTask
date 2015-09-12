@@ -49,7 +49,10 @@ void Tile::HandleEvent(HGE* hge, hgeInputEvent* inputEvent)
 		}
 		else
 		{
-			SetBlock();
+			if ((!isOccupiedByPlayer) && (!isOccupiedByGuard))
+			{
+				SetBlock();
+			}
 		}
 	}
 }
@@ -191,6 +194,13 @@ void Tile::SetOccupiedByPlayer()
 	SetColor(Green);
 }
 
+void Tile::SetFreeOfPlayer()
+{
+	isOccupiedByPlayer = false;
+
+	SetColor(White);
+}
+
 bool Tile::IsOccupiedByGuard() const
 {
 	return isOccupiedByGuard;
@@ -203,9 +213,8 @@ void Tile::SetOccupiedByGuard()
 	SetColor(Red);
 }
 
-void Tile::SetFree()
+void Tile::SetFreeOfGuard()
 {
-	isOccupiedByPlayer = false;
 	isOccupiedByGuard = false;
 
 	SetColor(White);
