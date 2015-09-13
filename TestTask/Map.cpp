@@ -2,23 +2,6 @@
 #include "HgeManager.h"
 
 
-namespace TileInitHelp
-{
-	const int halfSize = mapSize / 2;
-
-	int QuadrantBasedOffset(int index)
-	{
-		if (index >= halfSize)
-		{
-			return index - halfSize;
-		}
-		else
-		{
-			return halfSize - index - 1;
-		}
-	}
-}
-
 Map::Map(HTEXTURE texture) : tileTexture(texture)
 {
 }

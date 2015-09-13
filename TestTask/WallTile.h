@@ -35,6 +35,7 @@ public:
 	void SetDangerous();
 
 	void SetOrient(bool orient_);
+	bool Orient();
 
 private:
 
@@ -51,8 +52,8 @@ private:
 	bool isSafe;
 
 	bool orient;					// флаг для определения ориентации стены в простарнстве
-									// (true - вдоль оси Ox
-									// false - вдоль оси Oy
+									// (true - вдоль оси Ox (правая)
+									// false - вдоль оси Oy (левая))
 
 };
 

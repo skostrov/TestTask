@@ -24,11 +24,14 @@ private:
 	list<SceneObject*> objects;
 
 	const char* mapTextureName = "tile.png";
+	const char* safeWallTextureName = "safewall.png";
 	const char* playerTextureName = "greenball.png";
 	const char* guardTextureName = "redball.png";
 	const char* particlesTextureName = "particles.png";
+	
 
 	HTEXTURE mapTexture;
+	HTEXTURE safeWallTexture;
 	HTEXTURE playerTexture;
 	HTEXTURE guardTexture;
 	HTEXTURE particlesTexture;

@@ -11,7 +11,7 @@ class Wall : public SceneObject
 
 public:
 
-	Wall(HTEXTURE safeTexture_, HTEXTURE dangerousTexture_);
+	Wall(TraversableMap* grid_, bool orient_, HTEXTURE safeTexture_, HTEXTURE dangerousTexture_);
 	~Wall();
 
 	void Initiate(HGE* hge, const Vector3& center) override;
@@ -23,20 +23,24 @@ public:
 
 	Vector3 RealCenter();
 
+	bool Orient();
+
 private:
 
-	void InitiateTile(WallTile& tile, int index, HGE* hge);
+	void InitiateWallTile(int index, HGE* hge);
 
 	HTEXTURE safeTexture;
 	HTEXTURE dangerousTexture;
 
 	Vector3 realCenter;
 
-	WallTile wallGrid[mapSize];
+	WallTile* wallGrid[mapSize];
 
 	list<Projectile*> projectiles;
 
 	TraversableMap* grid;
+
+	bool orient;
 
 };
 

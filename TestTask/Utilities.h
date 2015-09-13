@@ -27,7 +27,7 @@
 
 using namespace std;
 
-const int mapSize = 20;
+const int mapSize = 4;
 
 const float Pi = 3.14159265f;
 const float Eps = 0.5f;
@@ -185,6 +185,23 @@ namespace GraphFormat
 	inline void* IndexToNode(const iVector2& index)
 	{
 		return (void*)(index.j * mapSize + index.i);
+	}
+}
+
+namespace TileInitHelp
+{
+	const int halfSize = mapSize / 2;
+
+	inline int QuadrantBasedOffset(int index)
+	{
+		if (index >= halfSize)
+		{
+			return index - halfSize;
+		}
+		else
+		{
+			return halfSize - index - 1;
+		}
 	}
 }
 
