@@ -34,11 +34,6 @@ void Projectile::Initiate(HGE* hge, const Vector3& center)
 	OccupyTile(nextPos);
 }
 
-void Projectile::Release(HGE* hge)
-{
-	hge->Texture_Free(texture);
-}
-
 void Projectile::HandleEvent(HGE* hge, hgeInputEvent* inputEvent)
 {
 }

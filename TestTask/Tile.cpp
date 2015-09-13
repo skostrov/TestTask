@@ -28,10 +28,6 @@ void Tile::Initiate(HGE* hge, const Vector3& center)
 	quad.v[3] = { botLeft.x, botLeft.y, 0.5f, White, 0, 1 };
 }
 
-void Tile::Release(HGE* hge)
-{
-}
-
 void Tile::HandleEvent(HGE* hge, hgeInputEvent* inputEvent)
 {
 	if ((inputEvent->type == INPUT_MBUTTONDOWN) && (inputEvent->key == HGEK_RBUTTON))

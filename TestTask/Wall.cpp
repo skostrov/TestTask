@@ -14,17 +14,6 @@ void Wall::Initiate(HGE* hge, const Vector3& center)
 
 }
 
-void Wall::Release(HGE* hge)
-{
-	for (auto& i : wallGrid)
-	{
-		i.Release(hge);
-	}
-
-	hge->Texture_Free(safeTexture);
-	hge->Texture_Free(dangerousTexture);
-}
-
 void Wall::HandleEvent(HGE* hge, hgeInputEvent* inputEvent)
 {
 

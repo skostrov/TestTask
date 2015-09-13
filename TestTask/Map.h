@@ -14,7 +14,6 @@ public:
 	virtual ~Map();
 
 	void Initiate(HGE* hge, const Vector3& center) override;
-	void Release(HGE* hge) override;
 
 	void HandleEvent(HGE* hge, hgeInputEvent* inputEvent) override;
 	void Update(float dt) override;

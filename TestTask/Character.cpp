@@ -27,14 +27,6 @@ void Character::Initiate(HGE* hge, const Vector3& center)
 	OccupyTile(nextPos);
 }
 
-void Character::Release(HGE* hge)
-{
-	if (quad.tex)
-	{
-		hge->Texture_Free(quad.tex);
-	}
-}
-
 void Character::HandleEvent(HGE* hge, hgeInputEvent* inputEvent)
 {
 	if (inputEvent->type == INPUT_MBUTTONDOWN)

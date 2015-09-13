@@ -41,19 +41,6 @@ void Map::Initiate(HGE* hge, const Vector3& center)
 
 }
 
-void Map::Release(HGE* hge)
-{
-	for (auto& i : grid)
-	{
-		for (auto& j : i)
-		{
-			j.Release(hge);
-		}
-	}
-
-	hge->Texture_Free(tileTexture);
-}
-
 void Map::HandleEvent(HGE* hge, hgeInputEvent* inputEvent)
 {
 	if ((inputEvent->type == INPUT_MBUTTONDOWN) && (inputEvent->key == HGEK_RBUTTON))

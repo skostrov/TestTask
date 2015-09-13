@@ -29,10 +29,6 @@ void WallTile::Initiate(HGE* hge, const Vector3& center)
 	quad.v[3] = { botLeft.x, botLeft.y, 0.5f, White, 0, 1 };
 }
 
-void WallTile::Release(HGE* hge)
-{
-}
-
 void WallTile::HandleEvent(HGE* hge, hgeInputEvent* inputEvent)
 {
 }

@@ -25,11 +25,11 @@ void TraversableMap::AdjacentCost(void* node, std::vector<micropather::StateCost
 	iVector2 index = GraphFormat::NodeToIndex(node);
 
 	const iVector2 moves[8] = { { 1, 0 }, { 1, 1 }, { 0, 1 }, { -1, 1 },					// Всевозможные направления движений
-	{ -1, 0 }, { -1, -1 }, { 0, -1 }, { 1, -1 } };				// на клетчатой доске
+	{ -1, 0 }, { -1, -1 }, { 0, -1 }, { 1, -1 } };											// на клетчатой доске
 
 	const float cost[8] = { 1, FLT_MAX, 1, FLT_MAX, 1, FLT_MAX, 1, FLT_MAX };				// Стоимость движения в каждом из
-	// направлений (переходы по диагонали
-	// запрещены)
+																							// направлений (переходы по диагонали
+																							// запрещены)
 
 	for (int k = 0; k < 8; ++k)
 	{
