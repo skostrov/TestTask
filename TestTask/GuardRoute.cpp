@@ -37,7 +37,7 @@ GuardRoute::~GuardRoute()
 {
 }
 
-const iVector2& GuardRoute::NextKeyPoint()
+iVector2 GuardRoute::NextKeyPoint()
 {
 	iVector2 result;
 
