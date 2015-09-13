@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Utilities.h"
-#include "SceneObject.h"
 #include "MapListener.h"
 #include "Tile.h"
 
@@ -24,13 +23,13 @@ public:
 
 	void AddListener(MapListener* listener);
 
-	void InitiateTile(Tile& tile, const iVector2& index, HGE* hge);
-
 	iVector2 GetSelectedTileIndex(const Vector2& point) const;
 
 	Tile& GetTileByIndex(const iVector2& index);
 
 protected:
+
+	void InitiateTile(Tile& tile, const iVector2& index, HGE* hge);
 
 	HTEXTURE tileTexture;
 

@@ -48,7 +48,7 @@ void Projectile::Update(float dt)
 	if (IsMoving())
 	{
 		Move(dt);
-		particles->MoveTo(imCenter.x - 20, imCenter.y - 20);
+		particles->MoveTo(imCenter.x - subtexSize - 10, imCenter.y - subtexSize);
 	}
 	else
 	{
@@ -78,11 +78,13 @@ void Projectile::Render(HGE* hge)
 void Projectile::OccupyTile(const iVector2& index) const
 {
 	grid->GetTileByIndex(index).SetDangerous();
+	grid->GetTileByIndex({ index.i, index.j - 1 }).SetDangerous();
 }
 
 void Projectile::FreeTile(const iVector2& index) const
 {
 	grid->GetTileByIndex(index).SetSafe();
+	grid->GetTileByIndex({ index.i , index.j - 1 }).SetSafe();
 }
 
 void Projectile::GetNextPos()

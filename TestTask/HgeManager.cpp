@@ -14,12 +14,7 @@ HgeManager::HgeManager()
 
 HgeManager::~HgeManager()
 {
-	for (auto& i : *objects)
-	{
-		delete i;
-	}
-
-	delete objects;
+	delete game;
 
 	delete instance;
 }
@@ -30,8 +25,8 @@ HgeManager* HgeManager::Instance()
 	{
 		instance = new HgeManager();
 
-		instance->SetHge(nullptr);
-		instance->SetObjects(new list<SceneObject*>());
+		instance->hge = nullptr;
+		instance->game = new Game();
 	}
 
 	return instance;
@@ -47,14 +42,14 @@ void HgeManager::SetHge(HGE* hge_)
 	hge = hge_;
 }
 
-list<SceneObject*>* HgeManager::Objects()
+Game* HgeManager::GetGame()
 {
-	return objects;
+	return game;
 }
 
-void HgeManager::SetObjects(list<SceneObject*>* objects_)
+void HgeManager::SetGame(Game* game_)
 {
-	objects = objects_;
+	game = game_;
 }
 
 bool HgeManager::FrameFunc()
@@ -69,12 +64,8 @@ bool HgeManager::FrameFunc()
 		HgeManager::Instance()->Hge()->Input_GetEvent(inputEvent);
 		float dt = HgeManager::Instance()->Hge()->Timer_GetDelta();
 
-
-		for (auto& i : *(HgeManager::Instance()->Objects()))
-		{
-			i->HandleEvent(HgeManager::Instance()->Hge(), inputEvent);
-			i->Update(dt);
-		}
+		HgeManager::Instance()->game->HandleEvent(HgeManager::Instance()->hge, inputEvent);
+		HgeManager::Instance()->game->Update(dt);
 
 		delete inputEvent;
 
@@ -87,10 +78,7 @@ bool HgeManager::RenderFunc()
 	HgeManager::Instance()->Hge()->Gfx_BeginScene();
 	HgeManager::Instance()->Hge()->Gfx_Clear(0);
 
-	for (auto& i : *(HgeManager::Instance()->Objects()))
-	{
-		i->Render(HgeManager::Instance()->Hge());
-	}
+	HgeManager::Instance()->game->Render(HgeManager::Instance()->hge);
 
 	HgeManager::Instance()->Hge()->Gfx_EndScene();
 
@@ -115,29 +103,7 @@ bool HgeManager::Initiate()
 
 void HgeManager::Start()
 {
-	HTEXTURE mapTexture = hge->Texture_Load("tile.png");
-	HTEXTURE playerTexture = hge->Texture_Load("greenball.png");
-	HTEXTURE guardTexture = hge->Texture_Load("redball.png");
-	HTEXTURE particlesTexture = hge->Texture_Load("particles.png");
-
-	TraversableMap* gameMap = new TraversableMap(mapTexture);
-	Character* player = new Character(gameMap, { 0, 0 }, playerTexture);
-	Guard* guard = new Guard(gameMap, { 10, 10 }, guardTexture, GuardRouteType::CIRCLE);
-	Projectile* projectile = new Projectile(gameMap, { 0, 10 }, { 19, 10 }, particlesTexture);
-
-	gameMap->AddListener(player);
-	gameMap->AddListener(guard);
-
-
-	gameMap->Initiate(hge, { 0, 0, 0 });
-	player->Initiate(hge, { 0, 0, 0 });
-	guard->Initiate(hge, { 0, 0, 0 });
-	projectile->Initiate(hge, { 0, 0, 0 });
-
-	objects->push_back(gameMap);
-	objects->push_back(player);
-	objects->push_back(guard);
-	objects->push_back(projectile);
+	game->Initiate(hge, { 0, 0, 0 });
 
 	hge->System_Start();
 }
@@ -149,10 +115,7 @@ void HgeManager::ThrowMassage()
 
 void HgeManager::Release()
 {
-	for (auto& i : *objects)
-	{
-		i->Release(hge);
-	}
+	game->Release(hge);
 
 	hge->System_Shutdown();
 	hge->Release();

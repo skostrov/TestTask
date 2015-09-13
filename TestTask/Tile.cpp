@@ -1,7 +1,7 @@
 #include "Tile.h"
 
 
-Tile::Tile() : isBlocked(false), isSafe(true)
+Tile::Tile() : isSelected(false), isBlocked(false), isSafe(true), isOccupiedByPlayer(false), isOccupiedByGuard(false)
 {
 	quad.blend = BLEND_ALPHABLEND | BLEND_COLORMUL | BLEND_ZWRITE;
 }
@@ -26,12 +26,6 @@ void Tile::Initiate(HGE* hge, const Vector3& center)
 	quad.v[1] = { topRight.x, topRight.y, 0.5f, White, 1, 0 };
 	quad.v[2] = { botRight.x, botRight.y, 0.5f, White, 1, 1 };
 	quad.v[3] = { botLeft.x, botLeft.y, 0.5f, White, 0, 1 };
-
-	isSelected = false;
-	isBlocked = false;
-	isSafe = true;
-	isOccupiedByPlayer = false;
-	isOccupiedByGuard = false;
 }
 
 void Tile::Release(HGE* hge)

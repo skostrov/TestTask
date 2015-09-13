@@ -82,6 +82,7 @@
   <ItemGroup>
     <ClCompile Include="AffineRotation.cpp" />
     <ClCompile Include="Character.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="Guard.cpp" />
     <ClCompile Include="GuardRoute.cpp" />
     <ClCompile Include="HgeManager.cpp" />
@@ -94,6 +95,8 @@
     <ClCompile Include="TestTask.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TraversableMap.cpp" />
+    <ClCompile Include="Wall.cpp" />
+    <ClCompile Include="WallTile.cpp" />
     <ClCompile Include="XRotation.cpp" />
     <ClCompile Include="YRotation.cpp" />
     <ClCompile Include="ZProjection.cpp" />
@@ -102,6 +105,7 @@
   <ItemGroup>
     <ClInclude Include="AffineRotation.h" />
     <ClInclude Include="Character.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="Guard.h" />
     <ClInclude Include="GuardRoute.h" />
     <ClInclude Include="HgeManager.h" />
@@ -114,6 +118,8 @@
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TraversableMap.h" />
     <ClInclude Include="Utilities.h" />
+    <ClInclude Include="Wall.h" />
+    <ClInclude Include="WallTile.h" />
     <ClInclude Include="XRotation.h" />
     <ClInclude Include="YRotation.h" />
     <ClInclude Include="ZProjection.h" />

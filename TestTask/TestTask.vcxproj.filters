@@ -22,6 +22,15 @@
     <Filter Include="Isometric View\Header Files">
       <UniqueIdentifier>{5237792c-1e09-4fe5-8d52-456559b13458}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Moving Objects">
+      <UniqueIdentifier>{3dba220a-499a-4cc2-9043-5d1b0f51e7d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Moving Objects\Source Files">
+      <UniqueIdentifier>{7ac5d2a6-eaef-44fb-ac1c-9162b003ebfa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Moving Objects\Header Files">
+      <UniqueIdentifier>{e28b27cf-c4e6-45c1-83c8-d419482c8438}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TestTask.cpp">
@@ -63,19 +72,28 @@
     <ClCompile Include="micropather.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Character.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Guard.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MapListener.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GuardRoute.cpp">
+    <ClCompile Include="WallTile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Wall.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>Moving Objects\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Guard.cpp">
+      <Filter>Moving Objects\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GuardRoute.cpp">
+      <Filter>Moving Objects\Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Projectile.cpp">
+      <Filter>Moving Objects\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -119,19 +137,28 @@
     <ClInclude Include="micropather.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Character.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Guard.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MapListener.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GuardRoute.h">
+    <ClInclude Include="WallTile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Wall.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>Moving Objects\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Guard.h">
+      <Filter>Moving Objects\Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Projectile.h">
+      <Filter>Moving Objects\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GuardRoute.h">
+      <Filter>Moving Objects\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -8,24 +8,43 @@ GuardRoute::GuardRoute(GuardRouteType type_) : type(type_)
 
 	case GuardRouteType::CIRCLE:
 
-		keyPoints.push_back({ routeParams.i, routeParams.i });
-		keyPoints.push_back({ routeParams.i, routeParams.j });
-		keyPoints.push_back({ routeParams.j, routeParams.j });
-		keyPoints.push_back({ routeParams.j, routeParams.i });
+		for (int k = routeParams.i; k <= routeParams.j; ++k)
+		{
+			keyPoints.push_back({ routeParams.i, k });
+		}
+
+		for (int k = routeParams.i; k <= routeParams.j; ++k)
+		{
+			keyPoints.push_back({ k, routeParams.j });
+		}
+
+		for (int k = routeParams.j; k >= routeParams.i; --k)
+		{
+			keyPoints.push_back({ routeParams.j, k });
+		}
+
+		for (int k = routeParams.j; k >= routeParams.i; --k)
+		{
+			keyPoints.push_back({ k, routeParams.i });
+		}
 
 		break;
 
 	case GuardRouteType::ILINE:
 
-		keyPoints.push_back({ mapSize / 2, routeParams.i });
-		keyPoints.push_back({ mapSize / 2, routeParams.j });
+		for (int k = routeParams.i; k <= routeParams.j; ++k)
+		{
+			keyPoints.push_back({ mapSize / 2, k });
+		}
 
 		break;
 
 	case GuardRouteType::JLINE:
 
-		keyPoints.push_back({ routeParams.i, mapSize / 2 });
-		keyPoints.push_back({ routeParams.j, mapSize / 2 });
+		for (int k = routeParams.i; k <= routeParams.j; ++k)
+		{
+			keyPoints.push_back({ k, mapSize / 2 });
+		}
 
 		break;
 	}

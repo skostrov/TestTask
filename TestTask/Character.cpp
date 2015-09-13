@@ -29,7 +29,10 @@ void Character::Initiate(HGE* hge, const Vector3& center)
 
 void Character::Release(HGE* hge)
 {
-	hge->Texture_Free(quad.tex);
+	if (quad.tex)
+	{
+		hge->Texture_Free(quad.tex);
+	}
 }
 
 void Character::HandleEvent(HGE* hge, hgeInputEvent* inputEvent)
