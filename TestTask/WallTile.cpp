@@ -18,30 +18,13 @@ void WallTile::Initiate(HGE* hge, const Vector3& center)
 	Vector3 imCenter3d = Isometric::Instance()->ToImaginary(realCenter);
 	imCenter = { imCenter3d.x, imCenter3d.y };
 
-	//int quadrant = orient ? 1 : 0;
-
-	//Vector3 topLeft = Isometric::Instance()->ToImaginary({ realCenter.x - orient * width, realCenter.y - !orient * width, realCenter.z - height });
-	//Vector3 topRight = Isometric::Instance()->ToImaginary({ realCenter.x + orient * width, realCenter.y - !orient * width, realCenter.z - height });
-	//Vector3 botRight = Isometric::Instance()->ToImaginary({ realCenter.x + orient * width, realCenter.y + !orient * width, realCenter.z + height });
-	//Vector3 botLeft = Isometric::Instance()->ToImaginary({ realCenter.x - orient * width, realCenter.y + !orient * width, realCenter.z + height });
-
 	Vector3 topLeft;
 	Vector3 topRight;
 	Vector3 botRight;
 	Vector3 botLeft;
 
-	Vector3 rtopLeft;
-	Vector3 rtopRight;
-	Vector3 rbotRight;
-	Vector3 rbotLeft;
-
 	if (orient)
 	{
-		rtopLeft = { realCenter.x, realCenter.y - width, realCenter.z - height };
-		rtopRight = { realCenter.x, realCenter.y + width, realCenter.z - height };
-		rbotRight = { realCenter.x, realCenter.y + width, realCenter.z + height };
-		rbotLeft = { realCenter.x, realCenter.y - width, realCenter.z + height };
-
 		topLeft = Isometric::Instance()->ToImaginary({ realCenter.x, realCenter.y - width, realCenter.z - height });
 		topRight = Isometric::Instance()->ToImaginary({ realCenter.x, realCenter.y + width, realCenter.z - height });
 		botRight = Isometric::Instance()->ToImaginary({ realCenter.x, realCenter.y + width, realCenter.z + height });
@@ -49,11 +32,6 @@ void WallTile::Initiate(HGE* hge, const Vector3& center)
 	}
 	else
 	{
-		rtopLeft = { realCenter.x - width, realCenter.y, realCenter.z - height };
-		rtopRight = { realCenter.x + width, realCenter.y, realCenter.z - height };
-		rbotRight = { realCenter.x + width, realCenter.y, realCenter.z + height };
-		rbotLeft = { realCenter.x - width, realCenter.y, realCenter.z + height };
-
 		topLeft = Isometric::Instance()->ToImaginary({ realCenter.x - width, realCenter.y, realCenter.z - height });
 		topRight = Isometric::Instance()->ToImaginary({ realCenter.x + width, realCenter.y, realCenter.z - height });
 		botRight = Isometric::Instance()->ToImaginary({ realCenter.x + width, realCenter.y, realCenter.z + height });

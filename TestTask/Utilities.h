@@ -27,7 +27,7 @@
 
 using namespace std;
 
-const int mapSize = 4;
+const int mapSize = 20;
 
 const float Pi = 3.14159265f;
 const float Eps = 0.5f;

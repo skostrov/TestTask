@@ -30,29 +30,30 @@ void Game::Initiate(HGE* hge, const Vector3& center)
 	Wall* rightWall = new Wall(gameMap, true, safeWallTexture, safeWallTexture);
 	Wall* leftWall = new Wall(gameMap, false, safeWallTexture, safeWallTexture);
 	Character* player = new Character(gameMap, { 0, 0 }, playerTexture);
-	//Guard* guardCricle = new Guard(gameMap, { mapSize / 10, mapSize / 10 }, guardTexture, GuardRouteType::CIRCLE);
-	//Guard* guardLine = new Guard(gameMap, { mapSize / 10, mapSize / 2 }, guardTexture, GuardRouteType::JLINE);
-	//Projectile* projectile = new Projectile(gameMap, { 0, mapSize / 2 }, { mapSize - 1, mapSize / 2 }, particlesTexture);
+	Guard* guardCricle = new Guard(gameMap, { mapSize / 10, mapSize / 10 }, guardTexture, GuardRouteType::CIRCLE);
+	Guard* guardLine = new Guard(gameMap, { mapSize / 10, mapSize / 2 }, guardTexture, GuardRouteType::JLINE);
+	Projectile* projectile = new Projectile(gameMap, { 0, mapSize / 2 }, { mapSize - 1, mapSize / 2 }, particlesTexture);
 
 	gameMap->AddListener(player);
-	//gameMap->AddListener(guardCricle);
-	//gameMap->AddListener(guardLine);
+	gameMap->AddListener(guardCricle);
+	gameMap->AddListener(guardLine);
 
-	gameMap->Initiate(hge, { -50, 50, 0 });
+	gameMap->Initiate(hge, { 0, 0, 0 });
 	rightWall->Initiate(hge, { 0, 0, 0 });
 	leftWall->Initiate(hge, { 0, 0, 0 });
 	player->Initiate(hge, { 0, 0, 0 });
-	//guardCricle->Initiate(hge, { 0, 0, 0 });
-	//guardLine->Initiate(hge, { 0, 0, 0 });
-	//projectile->Initiate(hge, { 0, 0, 0 });
-
+	guardCricle->Initiate(hge, { 0, 0, 0 });
+	guardLine->Initiate(hge, { 0, 0, 0 });
+	projectile->Initiate(hge, { 0, 0, 0 });
+	
+	
 	objects.push_back(gameMap);
 	objects.push_back(rightWall);
 	objects.push_back(leftWall);
 	objects.push_back(player);
-	//objects.push_back(guardCricle);
-	//objects.push_back(guardLine);
-	//objects.push_back(projectile);
+	objects.push_back(guardCricle);
+	objects.push_back(guardLine);
+	objects.push_back(projectile);
 }
 
 void Game::Release(HGE* hge)

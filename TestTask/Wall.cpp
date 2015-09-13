@@ -28,7 +28,7 @@ void Wall::Initiate(HGE* hge, const Vector3& center)
 		realCenter.x = center.x;
 		realCenter.y = center.y - tileWidth * mapSize;//TileInitHelp::halfSize;
 	}
-	realCenter.z = center.z - tileHeight;
+	realCenter.z = center.z - 2 * tileHeight;
 
 	for (int i = 0; i < mapSize; ++i)
 	{
@@ -85,7 +85,7 @@ void Wall::InitiateWallTile(int index, HGE* hge)
 		tileCenter.y -= 2 * tileWidth * TileInitHelp::halfSize;
 	}
 
-	//tileCenter.z -= tileHeight;
+	tileCenter.z += tileHeight;
 
 	wallGrid[index]->SetOrient(orient);
 	wallGrid[index]->Initiate(hge, tileCenter);
