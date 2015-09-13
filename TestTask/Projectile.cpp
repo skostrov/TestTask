@@ -1,4 +1,5 @@
 #include "Projectile.h"
+#include "HgeManager.h"
 
 
 Projectile::Projectile(TraversableMap* grid_, const iVector2& startPos, const iVector2& finishPos, HTEXTURE texture_) : grid(grid_),
@@ -7,6 +8,18 @@ nextPos(startPos),
 destinationPos(finishPos),
 texture(texture_)
 {
+}
+
+Projectile::Projectile(const Projectile& other)
+{
+	texture = other.texture;
+	grid = other.grid;
+	imCenter = other.imCenter;
+	currentPos = other.currentPos;
+	nextPos = other.nextPos;
+	destinationPos = other.destinationPos;
+
+	//Initiate(HgeManager::Instance()->Hge(), { 0, 0, 0 });
 }
 
 Projectile::~Projectile()
@@ -70,6 +83,16 @@ void Projectile::Render(HGE* hge)
 	}
 }
 
+void Projectile::operator =(const Projectile& other)
+{
+	texture = other.texture;
+	grid = other.grid;
+	imCenter = other.imCenter;
+	currentPos = other.currentPos;
+	nextPos = other.nextPos;
+	destinationPos = other.destinationPos;
+}
+
 void Projectile::OccupyTile(const iVector2& index) const
 {
 	grid->GetTileByIndex(index).SetDangerous();
@@ -121,6 +144,10 @@ void Projectile::Move(float dt)
 	else
 	{
 		FreeTile(currentPos);
+		if (nextPos == destinationPos)
+		{
+			FreeTile(nextPos);
+		}
 		currentPos = nextPos;
 	}
 }

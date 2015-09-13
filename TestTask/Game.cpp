@@ -1,9 +1,9 @@
 #include "Game.h"
 #include "TraversableMap.h"
+#include "Wall.h"
 #include "Character.h"
 #include "Guard.h"
-#include "Projectile.h"
-#include "Wall.h"
+#include "Cannon.h"
 
 
 Game::Game()
@@ -27,12 +27,12 @@ void Game::Initiate(HGE* hge, const Vector3& center)
 	safeWallTexture = hge->Texture_Load(safeWallTextureName);
 
 	TraversableMap* gameMap = new TraversableMap(mapTexture);
-	Wall* rightWall = new Wall(gameMap, true, safeWallTexture, safeWallTexture);
-	Wall* leftWall = new Wall(gameMap, false, safeWallTexture, safeWallTexture);
+	Wall* rightWall = new Wall(gameMap, true, {  }, safeWallTexture, safeWallTexture);
+	Wall* leftWall = new Wall(gameMap, false, { mapSize / 2, mapSize / 2 - 1 }, safeWallTexture, safeWallTexture);
 	Character* player = new Character(gameMap, { 0, 0 }, playerTexture);
 	Guard* guardCricle = new Guard(gameMap, { mapSize / 10, mapSize / 10 }, guardTexture, GuardRouteType::CIRCLE);
-	Guard* guardLine = new Guard(gameMap, { mapSize / 10, mapSize / 2 }, guardTexture, GuardRouteType::JLINE);
-	Projectile* projectile = new Projectile(gameMap, { 0, mapSize / 2 }, { mapSize - 1, mapSize / 2 }, particlesTexture);
+	Guard* guardLine = new Guard(gameMap, { mapSize / 2, mapSize / 10 }, guardTexture, GuardRouteType::ILINE);
+	Cannon* cannon = new Cannon(gameMap, { 0, mapSize / 2 }, { mapSize - 1, mapSize / 2 }, 2.0f, particlesTexture);
 
 	gameMap->AddListener(player);
 	gameMap->AddListener(guardCricle);
@@ -44,8 +44,7 @@ void Game::Initiate(HGE* hge, const Vector3& center)
 	player->Initiate(hge, { 0, 0, 0 });
 	guardCricle->Initiate(hge, { 0, 0, 0 });
 	guardLine->Initiate(hge, { 0, 0, 0 });
-	projectile->Initiate(hge, { 0, 0, 0 });
-	
+	cannon->Initiate(hge, { 0, 0, 0 });
 	
 	objects.push_back(gameMap);
 	objects.push_back(rightWall);
@@ -53,7 +52,7 @@ void Game::Initiate(HGE* hge, const Vector3& center)
 	objects.push_back(player);
 	objects.push_back(guardCricle);
 	objects.push_back(guardLine);
-	objects.push_back(projectile);
+	objects.push_back(cannon);
 }
 
 void Game::Release(HGE* hge)

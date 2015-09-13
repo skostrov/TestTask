@@ -109,13 +109,13 @@ void Tile::SetSelected()
 
 	if (isBlocked)
 	{
-		SetColor(Orange);
+		SetColor(Green);
 	}
 	else
 	{
 		if ((!isOccupiedByPlayer) && (!isOccupiedByGuard) && isSafe)
 		{
-			SetColor(Orange);
+			SetColor(Green);
 		}
 	}
 }

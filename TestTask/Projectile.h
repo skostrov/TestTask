@@ -11,6 +11,7 @@ class Projectile : public SceneObject
 public:
 
 	Projectile(TraversableMap* grid_, const iVector2& startPos, const iVector2& finishPos, HTEXTURE texture_);
+	Projectile(const Projectile& other);
 	~Projectile();
 
 	void Initiate(HGE* hge, const Vector3& center) override;
@@ -21,6 +22,8 @@ public:
 	void Render(HGE* hge) override;
 
 	void GetNextPos();
+
+	void operator =(const Projectile& other);
 
 	void OccupyTile(const iVector2& index) const;
 	void FreeTile(const iVector2& index) const;
@@ -33,7 +36,7 @@ public:
 private:
 
 	const int emission = 1000;
-	const float velocity = 10.0f;
+	const float velocity = 30.0f;
 
 	const Vector2 texOffset = { 70, 70 };
 	const float subtexSize = 20;

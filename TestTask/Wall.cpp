@@ -1,7 +1,11 @@
 #include "Wall.h"
 
 
-Wall::Wall(TraversableMap* grid_, bool orient_, HTEXTURE safeTexture_, HTEXTURE dangerousTexture_) : grid(grid_), orient(orient_), safeTexture(safeTexture_), dangerousTexture(dangerousTexture_)
+Wall::Wall(TraversableMap* grid_, bool orient_, vector<int> cannonPos_, HTEXTURE safeTexture_, HTEXTURE dangerousTexture_) : grid(grid_),
+	orient(orient_),
+	cannonPos(cannonPos_),
+	safeTexture(safeTexture_),
+	dangerousTexture(dangerousTexture_)
 {
 }
 
@@ -20,19 +24,24 @@ void Wall::Initiate(HGE* hge, const Vector3& center)
 
 	if (orient)
 	{
-		realCenter.x = center.x + tileWidth * mapSize;//TileInitHelp::halfSize;
+		realCenter.x = center.x + tileWidth * mapSize;
 		realCenter.y = center.y;
 	}
 	else
 	{
 		realCenter.x = center.x;
-		realCenter.y = center.y - tileWidth * mapSize;//TileInitHelp::halfSize;
+		realCenter.y = center.y - tileWidth * mapSize;
 	}
 	realCenter.z = center.z - 2 * tileHeight;
 
 	for (int i = 0; i < mapSize; ++i)
 	{
 		InitiateWallTile(i, hge);
+
+		if (find(cannonPos.cbegin(), cannonPos.cend(), i) != cannonPos.cend())
+		{
+			wallGrid[i]->SetDangerous();
+		}
 	}
 }
 

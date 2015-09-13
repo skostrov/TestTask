@@ -3,7 +3,6 @@
 #include "Utilities.h"
 #include "WallTile.h"
 #include "TraversableMap.h"
-#include "Projectile.h"
 
 
 class Wall : public SceneObject
@@ -11,7 +10,7 @@ class Wall : public SceneObject
 
 public:
 
-	Wall(TraversableMap* grid_, bool orient_, HTEXTURE safeTexture_, HTEXTURE dangerousTexture_);
+	Wall(TraversableMap* grid_, bool orient_, vector<int> cannonPos_, HTEXTURE safeTexture_, HTEXTURE dangerousTexture_);
 	~Wall();
 
 	void Initiate(HGE* hge, const Vector3& center) override;
@@ -36,7 +35,7 @@ private:
 
 	WallTile* wallGrid[mapSize];
 
-	list<Projectile*> projectiles;
+	vector<int> cannonPos;
 
 	TraversableMap* grid;
 
