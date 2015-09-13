@@ -89,6 +89,7 @@
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapListener.cpp" />
     <ClCompile Include="micropather.cpp" />
+    <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="SceneObject.cpp" />
     <ClCompile Include="TestTask.cpp" />
     <ClCompile Include="Tile.cpp" />
@@ -108,6 +109,7 @@
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapListener.h" />
     <ClInclude Include="micropather.h" />
+    <ClInclude Include="Projectile.h" />
     <ClInclude Include="SceneObject.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TraversableMap.h" />

@@ -10,7 +10,7 @@ class TraversableMap : public Map, public micropather::Graph
 
 public:
 
-	TraversableMap();
+	TraversableMap(HTEXTURE texture);
 	~TraversableMap();
 
 private:

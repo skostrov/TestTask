@@ -38,24 +38,24 @@ protected:
 	int FindPath(vector<void*>& foundPath);
 
 	const float size = 16.0f;				// Половина стороны
-											// обрамляющего квадрата
+	// обрамляющего квадрата
 
 	const float texOffset = 10.0f;			// Смещение текстуры относительно
-											// центра персонажа
+	// центра персонажа
+
+	const float velocity = 10.0f;
 
 	TraversableMap* grid;
 	iVector2 currentPos;					// Индекс тайла, на котором в данный
-											// момент находится персонаж
+	// момент находится персонаж
 
 	micropather::MicroPather pather;
 	vector<iVector2> currentPath;
 
 	Vector2 imCenter;						// Экранные координаты центра персонажа
-											// после применения преобразований
+	// после применения преобразований
 
 	hgeQuad quad;							// Обрамляющий квадрат
-
-	const float velocity = 10.0f;
 
 	iVector2 nextPos;
 	iVector2 destinationPos;

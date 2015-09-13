@@ -36,7 +36,6 @@ void Tile::Initiate(HGE* hge, const Vector3& center)
 
 void Tile::Release(HGE* hge)
 {
-	hge->Texture_Free(quad.tex);
 }
 
 void Tile::HandleEvent(HGE* hge, hgeInputEvent* inputEvent)
@@ -68,7 +67,7 @@ void Tile::Render(HGE* hge)
 
 bool Tile::CheckHit(const Vector2& imPoint) const
 {
-	Vector3 realPoint = Isometric::Instance()->ToReal( { imPoint.x, imPoint.y, 0 } );
+	Vector3 realPoint = Isometric::Instance()->ToReal({ imPoint.x, imPoint.y, 0 });
 
 	return (realPoint.x >= realCenter.x - size) && (realPoint.x <= realCenter.x + size) &&
 		(realPoint.y >= realCenter.y - size) && (realPoint.y <= realCenter.y + size);
@@ -124,7 +123,7 @@ void Tile::SetSelected()
 	}
 	else
 	{
-		if ((!isOccupiedByPlayer) && (!isOccupiedByGuard))
+		if ((!isOccupiedByPlayer) && (!isOccupiedByGuard) && isSafe)
 		{
 			SetColor(Orange);
 		}
@@ -141,7 +140,7 @@ void Tile::SetUnselected()
 	}
 	else
 	{
-		if ((!isOccupiedByPlayer) && (!isOccupiedByGuard))
+		if ((!isOccupiedByPlayer) && (!isOccupiedByGuard) && isSafe)
 		{
 			SetColor(White);
 		}
@@ -175,11 +174,15 @@ bool Tile::IsSafe() const
 void Tile::SetSafe()
 {
 	isSafe = true;
+
+	SetColor(White);
 }
 
 void Tile::SetDangerous()
 {
 	isSafe = false;
+
+	SetColor(Orange);
 }
 
 bool Tile::IsOccupiedByPlayer() const

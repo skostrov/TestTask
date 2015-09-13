@@ -22,6 +22,8 @@
 #include <functional>
 #include <cmath>
 #include <hge.h>
+#include <hgesprite.h>
+#include <hgeparticle.h>
 
 using namespace std;
 
@@ -46,17 +48,22 @@ struct Vector2
 
 	Vector2 operator +(const Vector2& other) const
 	{
-		return Vector2 { x + other.x, y + other.y };
+		return Vector2{ x + other.x, y + other.y };
 	}
 
 	Vector2 operator -(const Vector2& other) const
 	{
-		return Vector2 { x - other.x, y - other.y } ;
+		return Vector2{ x - other.x, y - other.y };
 	}
 
 	Vector2 operator *(float scalar) const
 	{
-		return Vector2 { x * scalar, y * scalar };
+		return Vector2{ x * scalar, y * scalar };
+	}
+
+	Vector2 operator /(float scalar) const
+	{
+		return Vector2{ x / scalar, y / scalar };
 	}
 
 	void operator +=(const Vector2& other)
@@ -76,17 +83,17 @@ struct Vector3
 
 	Vector3 operator +(const Vector3& other)
 	{
-		return Vector3 { x + other.x, y + other.y, z + other.z };
+		return Vector3{ x + other.x, y + other.y, z + other.z };
 	}
 
 	Vector3 operator -(const Vector3& other)
 	{
-		return Vector3 { x - other.x, y - other.y, z - other.z };
+		return Vector3{ x - other.x, y - other.y, z - other.z };
 	}
 
 	Vector3 operator *(float scalar)
 	{
-		return Vector3 { x * scalar, y * scalar, z * scalar };
+		return Vector3{ x * scalar, y * scalar, z * scalar };
 	}
 };
 
@@ -99,12 +106,29 @@ struct iVector2
 
 	iVector2 operator + (const iVector2& other)
 	{
-		return iVector2 { i + other.i, j + other.j };
+		return iVector2{ i + other.i, j + other.j };
+	}
+
+	void operator += (const iVector2& other)
+	{
+		i += other.i;
+		j += other.j;
 	}
 
 	iVector2 operator - (const iVector2& other)
 	{
-		return iVector2 { i - other.i, j - other.j };
+		return iVector2{ i - other.i, j - other.j };
+	}
+
+	iVector2 operator * (int scalar)
+	{
+		return iVector2{ i * scalar, j * scalar };
+	}
+
+	void operator *= (int scalar)
+	{
+		i *= scalar;
+		j *= scalar;
 	}
 
 	bool operator == (const iVector2& other) const
@@ -137,6 +161,12 @@ inline float EuclideanLength(const Vector2& vector)
 inline float EuclideanLength(const Vector3& vector)
 {
 	return sqrt(pow(vector.x, 2) + pow(vector.y, 2) + pow(vector.z, 2));
+}
+
+template <class T>
+int Sign(const T& value)
+{
+	return (T(0) < value) - (value < T(0));
 }
 
 namespace GraphFormat

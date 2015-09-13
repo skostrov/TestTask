@@ -19,7 +19,7 @@ namespace TileInitHelp
 	}
 }
 
-Map::Map()
+Map::Map(HTEXTURE texture) : tileTexture(texture)
 {
 }
 
@@ -50,6 +50,8 @@ void Map::Release(HGE* hge)
 			j.Release(hge);
 		}
 	}
+
+	hge->Texture_Free(tileTexture);
 }
 
 void Map::HandleEvent(HGE* hge, hgeInputEvent* inputEvent)
@@ -114,17 +116,17 @@ void Map::InitiateTile(Tile& tile, const iVector2& index, HGE* hge)
 	int quadrantX = (index.j / TileInitHelp::halfSize) ? 1 : -1;
 	int quadrantY = (index.i / TileInitHelp::halfSize) ? 1 : -1;
 
-	tileCenterX += quadrantX *  (tile.Size() + interTileOffset / 2);
-	tileCenterY += quadrantY * (tile.Size() + interTileOffset / 2);
+	tileCenterX += quadrantX *  tile.Size();
+	tileCenterY += quadrantY * tile.Size();
 
 	offsetX = TileInitHelp::QuadrantBasedOffset(index.j);
 	offsetY = TileInitHelp::QuadrantBasedOffset(index.i);
 
-	tileCenterX += quadrantX *  offsetX * (2 * tile.Size() + interTileOffset);
-	tileCenterY += quadrantY * offsetY * (2 * tile.Size() + interTileOffset);
+	tileCenterX += quadrantX *  offsetX * 2 * tile.Size();
+	tileCenterY += quadrantY * offsetY * 2 * tile.Size();
 
-	tile.Initiate(hge, { tileCenterX, tileCenterY, 0 } );
-	tile.SetTexture(hge->Texture_Load("tile.png"));
+	tile.Initiate(hge, { tileCenterX, tileCenterY, 0 });
+	tile.SetTexture(tileTexture);
 }
 
 iVector2 Map::GetSelectedTileIndex(const Vector2& point) const
@@ -135,7 +137,7 @@ iVector2 Map::GetSelectedTileIndex(const Vector2& point) const
 		{
 			if (grid[i][j].CheckHit(point))
 			{
-				return { i, j };
+				return{ i, j };
 			}
 		}
 	}

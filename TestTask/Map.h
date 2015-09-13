@@ -11,7 +11,7 @@ class Map : public SceneObject
 
 public:
 
-	Map();
+	Map(HTEXTURE texture);
 	virtual ~Map();
 
 	void Initiate(HGE* hge, const Vector3& center) override;
@@ -32,9 +32,7 @@ public:
 
 protected:
 
-	const float interTileOffset = 2.0f;				// ќтступ между тайлами (используетс€ при
-													// отрисовке карты дл€ изображени€
-													// видимой границы тайлов)
+	HTEXTURE tileTexture;
 
 	Vector2 realCenter;								// Ёкранные координаты центра карты 
 													// до применени€ аффинных преобразований вращени€,

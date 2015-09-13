@@ -2,6 +2,7 @@
 #include "TraversableMap.h"
 #include "Character.h"
 #include "Guard.h"
+#include "Projectile.h"
 
 
 HgeManager* HgeManager::instance = nullptr;
@@ -114,24 +115,29 @@ bool HgeManager::Initiate()
 
 void HgeManager::Start()
 {
+	HTEXTURE mapTexture = hge->Texture_Load("tile.png");
 	HTEXTURE playerTexture = hge->Texture_Load("greenball.png");
 	HTEXTURE guardTexture = hge->Texture_Load("redball.png");
+	HTEXTURE particlesTexture = hge->Texture_Load("particles.png");
 
-	TraversableMap* gameMap = new TraversableMap();
+	TraversableMap* gameMap = new TraversableMap(mapTexture);
 	Character* player = new Character(gameMap, { 0, 0 }, playerTexture);
 	Guard* guard = new Guard(gameMap, { 10, 10 }, guardTexture, GuardRouteType::CIRCLE);
-	
+	Projectile* projectile = new Projectile(gameMap, { 0, 10 }, { 19, 10 }, particlesTexture);
+
 	gameMap->AddListener(player);
 	gameMap->AddListener(guard);
 
 
-	gameMap->Initiate(hge, { 0, 0, 0 } );
+	gameMap->Initiate(hge, { 0, 0, 0 });
 	player->Initiate(hge, { 0, 0, 0 });
 	guard->Initiate(hge, { 0, 0, 0 });
+	projectile->Initiate(hge, { 0, 0, 0 });
 
 	objects->push_back(gameMap);
 	objects->push_back(player);
 	objects->push_back(guard);
+	objects->push_back(projectile);
 
 	hge->System_Start();
 }
