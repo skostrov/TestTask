@@ -54,7 +54,7 @@ void HgeManager::SetGame(Game* game_)
 
 bool HgeManager::FrameFunc()
 {
-	if (HgeManager::Instance()->Hge()->Input_GetKeyState(HGEK_ESCAPE))
+	if (HgeManager::Instance()->hge->Input_GetKeyState(HGEK_ESCAPE) || HgeManager::Instance()->game->Status() == GameStatus::GAMEOVER)
 	{
 		return true;
 	}

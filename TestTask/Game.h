@@ -2,7 +2,16 @@
 
 #include "Utilities.h"
 #include "SceneObject.h"
+#include "Character.h"
+#include "TraversableMap.h"
 
+
+enum class GameStatus
+{
+	MENU,
+	GAMEOVER,
+	INPROCESS
+};
 
 class Game : public SceneObject
 {
@@ -20,7 +29,16 @@ public:
 
 	void Render(HGE* hge) override;
 
+	GameStatus Status();
+
+	void CheckPlayer();
+
 private:
+
+	GameStatus status;
+
+	Character* player;
+	TraversableMap* gameField;
 
 	list<SceneObject*> objects;
 
@@ -29,7 +47,6 @@ private:
 	const char* playerTextureName = "greenball.png";
 	const char* guardTextureName = "redball.png";
 	const char* particlesTextureName = "particles.png";
-	
 
 	HTEXTURE mapTexture;
 	HTEXTURE safeWallTexture;

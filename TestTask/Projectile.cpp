@@ -3,10 +3,10 @@
 
 
 Projectile::Projectile(TraversableMap* grid_, const iVector2& startPos, const iVector2& finishPos, HTEXTURE texture_) : grid(grid_),
-currentPos(startPos),
-nextPos(startPos),
-destinationPos(finishPos),
-texture(texture_)
+	currentPos(startPos),
+	nextPos(startPos),
+	destinationPos(finishPos),
+	texture(texture_)
 {
 }
 
@@ -18,8 +18,6 @@ Projectile::Projectile(const Projectile& other)
 	currentPos = other.currentPos;
 	nextPos = other.nextPos;
 	destinationPos = other.destinationPos;
-
-	//Initiate(HgeManager::Instance()->Hge(), { 0, 0, 0 });
 }
 
 Projectile::~Projectile()
@@ -41,6 +39,7 @@ void Projectile::Initiate(HGE* hge, const Vector3& center)
 	particles->info.nEmission = emission;
 	particles->info.fParticleLifeMin = 0.15f;
 	particles->info.fParticleLifeMax = 0.2f;
+	particles->MoveTo(imCenter.x, imCenter.y);
 	particles->Fire();
 
 	OccupyTile(currentPos);

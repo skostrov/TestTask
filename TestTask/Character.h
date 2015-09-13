@@ -32,32 +32,42 @@ public:
 	bool IsMoving() const;
 	void Move(float dt);
 
+	iVector2 CurrentPos();
+	iVector2 NextPos();
+
 protected:
 
 	int FindPath(vector<void*>& foundPath);
 
 	const float size = 16.0f;				// Половина стороны
-	// обрамляющего квадрата
+											// обрамляющего квадрата
 
 	const float texOffset = 10.0f;			// Смещение текстуры относительно
-	// центра персонажа
+											// центра персонажа
 
-	const float velocity = 10.0f;
+	const float velocity = 10.0f;			// Скорость анимации перехода
 
 	TraversableMap* grid;
 	iVector2 currentPos;					// Индекс тайла, на котором в данный
-	// момент находится персонаж
+											// момент находится персонаж
 
-	micropather::MicroPather pather;
+	iVector2 nextPos;						// Тайл, в который персонаж переходит
+											// в данный момент времени
+											// (переход нельзя прервать изменением
+											// направления движения, анимация перехода
+											// непрерывна)
+
+	iVector2 destinationPos;				// Текущая точка назначения персонажа
+
+	micropather::MicroPather pather;		// Сторонний класс, реализующий алгоритм
+											// поиска A*
+
 	vector<iVector2> currentPath;
 
 	Vector2 imCenter;						// Экранные координаты центра персонажа
-	// после применения преобразований
+											// после применения преобразований
 
 	hgeQuad quad;							// Обрамляющий квадрат
-
-	iVector2 nextPos;
-	iVector2 destinationPos;
 
 };
 

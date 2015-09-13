@@ -1,12 +1,10 @@
 #include "Game.h"
-#include "TraversableMap.h"
 #include "Wall.h"
-#include "Character.h"
 #include "Guard.h"
 #include "Cannon.h"
 
 
-Game::Game()
+Game::Game() : status(GameStatus::INPROCESS)
 {
 }
 
@@ -29,19 +27,22 @@ void Game::Initiate(HGE* hge, const Vector3& center)
 	TraversableMap* gameMap = new TraversableMap(mapTexture);
 	Wall* rightWall = new Wall(gameMap, true, {  }, safeWallTexture, safeWallTexture);
 	Wall* leftWall = new Wall(gameMap, false, { mapSize / 2, mapSize / 2 - 1 }, safeWallTexture, safeWallTexture);
-	Character* player = new Character(gameMap, { 0, 0 }, playerTexture);
+	Character* userPlayer = new Character(gameMap, { 0, 0 }, playerTexture);
 	Guard* guardCricle = new Guard(gameMap, { mapSize / 10, mapSize / 10 }, guardTexture, GuardRouteType::CIRCLE);
 	Guard* guardLine = new Guard(gameMap, { mapSize / 2, mapSize / 10 }, guardTexture, GuardRouteType::ILINE);
 	Cannon* cannon = new Cannon(gameMap, { 0, mapSize / 2 }, { mapSize - 1, mapSize / 2 }, 2.0f, particlesTexture);
 
-	gameMap->AddListener(player);
+	gameField = gameMap;
+	player = userPlayer;
+
+	gameMap->AddListener(userPlayer);
 	gameMap->AddListener(guardCricle);
 	gameMap->AddListener(guardLine);
 
 	gameMap->Initiate(hge, { 0, 0, 0 });
 	rightWall->Initiate(hge, { 0, 0, 0 });
 	leftWall->Initiate(hge, { 0, 0, 0 });
-	player->Initiate(hge, { 0, 0, 0 });
+	userPlayer->Initiate(hge, { 0, 0, 0 });
 	guardCricle->Initiate(hge, { 0, 0, 0 });
 	guardLine->Initiate(hge, { 0, 0, 0 });
 	cannon->Initiate(hge, { 0, 0, 0 });
@@ -49,7 +50,7 @@ void Game::Initiate(HGE* hge, const Vector3& center)
 	objects.push_back(gameMap);
 	objects.push_back(rightWall);
 	objects.push_back(leftWall);
-	objects.push_back(player);
+	objects.push_back(userPlayer);
 	objects.push_back(guardCricle);
 	objects.push_back(guardLine);
 	objects.push_back(cannon);
@@ -81,9 +82,30 @@ void Game::Update(float dt)
 
 void Game::Render(HGE* hge)
 {
+	CheckPlayer();
+
 	for (auto& i : objects)
 	{
 		i->Render(hge);
+	}
+}
+
+GameStatus Game::Status()
+{
+	return status;
+}
+
+void Game::CheckPlayer()
+{
+	iVector2 playerCurPos = player->CurrentPos();
+	iVector2 playerNextPos = player->NextPos();
+
+	if (!gameField->GetTileByIndex(playerCurPos).IsSafe() ||
+		gameField->GetTileByIndex(playerCurPos).IsOccupiedByGuard() ||
+		!gameField->GetTileByIndex(playerNextPos).IsSafe() ||
+		gameField->GetTileByIndex(playerNextPos).IsOccupiedByGuard())
+	{
+		status = GameStatus::GAMEOVER;
 	}
 }
 

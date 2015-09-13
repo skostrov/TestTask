@@ -142,3 +142,13 @@ int Character::FindPath(vector<void*>& foundPath)
 	return pather.Solve(startNode, finishNode, &foundPath, &pathCost);
 }
 
+iVector2 Character::CurrentPos()
+{
+	return currentPos;
+}
+
+iVector2 Character::NextPos()
+{
+	return nextPos;
+}
+
