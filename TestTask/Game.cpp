@@ -38,8 +38,8 @@ void Game::Initiate(HGE* hge, const Vector3& center)
 	Wall* rightWall = new Wall(gameMap, true, {  }, safeWallTexture, safeWallTexture);
 	Wall* leftWall = new Wall(gameMap, false, { mapSize / 3, mapSize / 3 - 1, mapSize * 2 / 3, mapSize * 2 / 3 + 1 }, safeWallTexture, safeWallTexture);
 	Character* userPlayer = new Character(gameMap, start, playerTexture);
-	Cannon* cannon = new Cannon(gameMap, { 0, mapSize / 3 }, { mapSize - 1, mapSize / 3 }, 3.0f, particlesTexture);
-	Cannon* cannon2 = new Cannon(gameMap, { 0, mapSize * 2 / 3 + 1 }, { mapSize - 1, mapSize * 2 / 3 + 1 }, 3.5f, particlesTexture);
+	Cannon* cannon = new Cannon(gameMap, { 0, mapSize / 3 }, { mapSize - 1, mapSize / 3 }, 4.0f, particlesTexture);
+	Cannon* cannon2 = new Cannon(gameMap, { 0, mapSize * 2 / 3 + 1 }, { mapSize - 1, mapSize * 2 / 3 + 1 }, 5.5f, particlesTexture);
 
 	gameField = gameMap;
 	player = userPlayer;

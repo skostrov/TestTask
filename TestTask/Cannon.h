@@ -12,7 +12,7 @@ class Cannon : public SceneObject
 public:
 
 	Cannon(TraversableMap* grid_, const iVector2& position_, const iVector2& firePos_, float fireDelay_, HTEXTURE texture);
-	~Cannon();
+	~Cannon() override;
 
 	void Initiate(HGE* hge, const Vector3& center) override;
 

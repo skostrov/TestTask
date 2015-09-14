@@ -21,22 +21,23 @@ public:
 
 	void Render(HGE* hge) override;
 
-	void GetNextPos();
-
 	void operator =(const Projectile& other);
 
-	void OccupyTile(const iVector2& index) const;
-	void FreeTile(const iVector2& index) const;
-
 	bool IsMoving() const;
-	void Move(float dt);
 
 	bool IsDestReached() const;
 
 private:
 
+	void GetNextPos();
+
+	void OccupyTile(const iVector2& index) const;
+	void FreeTile(const iVector2& index) const;
+
+	void Move(float dt);
+
 	const int emission = 1000;
-	const float velocity = 30.0f;
+	const float velocity = 40.0f;
 
 	const Vector2 texOffset = { 70, 70 };
 	const float subtexSize = 20;

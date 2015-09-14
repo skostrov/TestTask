@@ -105,12 +105,12 @@ void Character::SetFoundPathAsCurrent(const vector<void*>& foundPath)
 	currentPath.erase(currentPath.begin());
 }
 
-void Character::OccupyTile(const iVector2& index)
+void Character::OccupyTile(const iVector2& index) const
 {
 	grid->GetTileByIndex(index).SetOccupiedByPlayer();
 }
 
-void Character::FreeTile(const iVector2& index)
+void Character::FreeTile(const iVector2& index) const
 {
 	grid->GetTileByIndex(index).SetFreeOfPlayer();
 }
@@ -144,12 +144,12 @@ int Character::FindPath(vector<void*>& foundPath)
 	return pather.Solve(startNode, finishNode, &foundPath, &pathCost);
 }
 
-iVector2 Character::CurrentPos()
+iVector2 Character::CurrentPos() const
 {
 	return currentPos;
 }
 
-iVector2 Character::NextPos()
+iVector2 Character::NextPos() const
 {
 	return nextPos;
 }

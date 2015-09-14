@@ -56,7 +56,7 @@ GuardRoute::~GuardRoute()
 {
 }
 
-iVector2 GuardRoute::NextKeyPoint()
+iVector2 GuardRoute::GetNextKeyPoint()
 {
 	iVector2 result;
 
@@ -71,7 +71,7 @@ iVector2 GuardRoute::NextKeyPoint()
 	return result;
 }
 
-GuardRouteType GuardRoute::GetType()
+GuardRouteType GuardRoute::GetType() const
 {
 	return type;
 }

@@ -18,9 +18,9 @@ public:
 	GuardRoute(GuardRouteType type_);
 	~GuardRoute();
 
-	iVector2 NextKeyPoint();
+	iVector2 GetNextKeyPoint();
 
-	GuardRouteType GetType();
+	GuardRouteType GetType() const;
 
 private:
 

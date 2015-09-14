@@ -53,7 +53,7 @@ void Guard::Update(float dt)
 		}
 		else
 		{
-			destinationPos = route.NextKeyPoint();
+			destinationPos = route.GetNextKeyPoint();
 
 			vector<void*> foundPath;
 			int result = FindPath(foundPath);
@@ -66,17 +66,17 @@ void Guard::Update(float dt)
 	}
 }
 
-void Guard::OccupyTile(const iVector2& index)
+void Guard::OccupyTile(const iVector2& index) const
 {
 	grid->GetTileByIndex(index).SetOccupiedByGuard();
 }
 
-void Guard::FreeTile(const iVector2& index)
+void Guard::FreeTile(const iVector2& index) const
 {
 	grid->GetTileByIndex(index).SetFreeOfGuard();
 }
 
-GuardRouteType Guard::GetRouteType()
+GuardRouteType Guard::GetRouteType() const
 {
 	return route.GetType();
 }

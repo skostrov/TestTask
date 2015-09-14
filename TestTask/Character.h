@@ -13,7 +13,7 @@ class Character : public SceneObject, public MapListener
 public:
 
 	Character(TraversableMap* grid_, const iVector2& startPos, HTEXTURE texture);
-	virtual ~Character();
+	~Character() override;
 
 	void Initiate(HGE* hge, const Vector3& center) override;
 
@@ -24,20 +24,20 @@ public:
 
 	void OnMapChanged() override;
 
-	void SetFoundPathAsCurrent(const vector<void*>& foundPath);
-
-	virtual void OccupyTile(const iVector2& index);
-	virtual void FreeTile(const iVector2& index);
-
 	bool IsMoving() const;
-	void Move(float dt);
 
-	iVector2 CurrentPos();
-	iVector2 NextPos();
+	iVector2 CurrentPos() const;
+	iVector2 NextPos() const;
 
 protected:
 
 	int FindPath(vector<void*>& foundPath);
+	void SetFoundPathAsCurrent(const vector<void*>& foundPath);
+
+	void Move(float dt);
+
+	virtual void OccupyTile(const iVector2& index) const;
+	virtual void FreeTile(const iVector2& index) const;
 
 	const float size = 16.0f;				// Половина стороны
 											// обрамляющего квадрата

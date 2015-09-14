@@ -11,19 +11,19 @@ class Guard : public Character
 public:
 
 	Guard(TraversableMap* grid_, const iVector2& startPos, HTEXTURE texture, GuardRouteType routeType_);
-	~Guard();
+	~Guard() override;
 
 	void Initiate(HGE* hge, const Vector3& center) override;
 
 	void HandleEvent(HGE* hge, hgeInputEvent* inputEvent) override;
 	void Update(float dt) override;
 
-	void OccupyTile(const iVector2& index) override;
-	void FreeTile(const iVector2& index) override;
-
-	GuardRouteType GetRouteType();
+	GuardRouteType GetRouteType() const;
 
 private:
+
+	void OccupyTile(const iVector2& index) const override;
+	void FreeTile(const iVector2& index) const override;
 
 	GuardRoute route;
 

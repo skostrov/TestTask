@@ -9,7 +9,7 @@ class YRotation : public AffineRotation
 public:
 
 	YRotation(float angleDegrees);
-	~YRotation();
+	~YRotation() override;
 
 	void Rotate(Vector3& point) const override;
 	void ReverseRotate(Vector3& point) const override;
