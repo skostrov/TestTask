@@ -18,7 +18,7 @@ Character::~Character()
 
 void Character::Initiate(HGE* hge, const Vector3& center)
 {
-	imCenter = grid->GetTileByIndex(currentPos).ImCenter();
+	imCenter = grid->GetTileByIndex(currentPos).GetImCenter();
 
 	quad.v[0] = { imCenter.x - size, imCenter.y - size - texOffset, 0.5f, White, 0, 0 };
 	quad.v[1] = { imCenter.x + size, imCenter.y - size - texOffset, 0.5f, White, 1, 0 };
@@ -122,7 +122,7 @@ bool Character::IsMoving() const
 
 void Character::Move(float dt)
 {
-	Vector2 direction = grid->GetTileByIndex(nextPos).ImCenter() - imCenter;
+	Vector2 direction = grid->GetTileByIndex(nextPos).GetImCenter() - imCenter;
 
 	if (EuclideanLength(direction) > Eps)
 	{

@@ -19,7 +19,7 @@ class Game : public SceneObject
 public:
 
 	Game();
-	~Game();
+	~Game() override;
 
 	void Initiate(HGE* hge, const Vector3& center) override;
 	void Release(HGE* hge);
@@ -29,7 +29,11 @@ public:
 
 	void Render(HGE* hge) override;
 
-	GameStatus Status();
+	GameStatus Status() const;
+
+	void SetFont(hgeFont* menuFont_);
+
+private:
 
 	void CheckPlayer();
 	void CheckGuards();
@@ -39,10 +43,6 @@ public:
 	void DisplayVictory();
 	void DisplayDefeat();
 	void Restart();
-
-	void SetFont(hgeFont* menuFont_);
-
-private:
 
 	const iVector2 start = { 0, 0 };
 	const iVector2 finish = { mapSize - 1, mapSize - 1 };

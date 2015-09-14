@@ -29,6 +29,8 @@ public:
 
 	void AddTransformation(TransName axis, float angle);
 
+	void Release();
+
 private:
 
 	Isometric();

@@ -94,14 +94,14 @@ void Map::InitiateTile(Tile& tile, const iVector2& index, HGE* hge)
 	int quadrantX = (index.j / TileInitHelp::halfSize) ? 1 : -1;
 	int quadrantY = (index.i / TileInitHelp::halfSize) ? 1 : -1;
 
-	tileCenterX += quadrantX *  tile.Size();
-	tileCenterY += quadrantY * tile.Size();
+	tileCenterX += quadrantX *  tile.GetSize();
+	tileCenterY += quadrantY * tile.GetSize();
 
 	offsetX = TileInitHelp::QuadrantBasedOffset(index.j);
 	offsetY = TileInitHelp::QuadrantBasedOffset(index.i);
 
-	tileCenterX += quadrantX *  offsetX * 2 * tile.Size();
-	tileCenterY += quadrantY * offsetY * 2 * tile.Size();
+	tileCenterX += quadrantX *  offsetX * 2 * tile.GetSize();
+	tileCenterY += quadrantY * offsetY * 2 * tile.GetSize();
 
 	tile.Initiate(hge, { tileCenterX, tileCenterY, 0 });
 	tile.SetTexture(tileTexture);
@@ -139,10 +139,5 @@ void Map::InformListeners() const
 iVector2 Map::GetFinishPos() const
 {
 	return finishPos;
-}
-
-void Map::SetFinishPos(const iVector2& finishPos_)
-{
-	finishPos = finishPos_;
 }
 

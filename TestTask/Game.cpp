@@ -11,19 +11,19 @@ Game::Game() : status(GameStatus::INPROCESS)
 
 Game::~Game()
 {
-	for (auto& i : objects)
-	{
-		delete i;
-	}
-
-	objects.clear();
-
 	for (auto& i : guards)
 	{
 		delete i;
 	}
 
 	guards.clear();
+
+	for (auto& i = objects.rbegin(); i != objects.rend(); ++i)
+	{
+		delete *i;
+	}
+
+	objects.clear();
 }
 
 void Game::Initiate(HGE* hge, const Vector3& center)
@@ -163,7 +163,7 @@ void Game::Render(HGE* hge)
 	}
 }
 
-GameStatus Game::Status()
+GameStatus Game::Status() const
 {
 	return status;
 }

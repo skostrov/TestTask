@@ -28,7 +28,7 @@ Projectile::~Projectile()
 
 void Projectile::Initiate(HGE* hge, const Vector3& center)
 {
-	imCenter = grid->GetTileByIndex(currentPos).ImCenter();
+	imCenter = grid->GetTileByIndex(currentPos).GetImCenter();
 
 	sprite = new hgeSprite(texture, texOffset.x, texOffset.y, subtexSize, subtexSize);
 
@@ -132,7 +132,7 @@ bool Projectile::IsMoving() const
 
 void Projectile::Move(float dt)
 {
-	Vector2 direction = grid->GetTileByIndex(nextPos).ImCenter() - imCenter;
+	Vector2 direction = grid->GetTileByIndex(nextPos).GetImCenter() - imCenter;
 	float dirLength = EuclideanLength(direction);
 	Vector2 normalizedDir = direction / dirLength;
 

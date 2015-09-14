@@ -63,22 +63,22 @@ bool Tile::CheckHit(const Vector2& imPoint) const
 		(realPoint.y >= realCenter.y - size) && (realPoint.y <= realCenter.y + size);
 }
 
-float Tile::Size() const
+float Tile::GetSize() const
 {
 	return size;
 }
 
-Vector2 Tile::RealCenter() const
+Vector2 Tile::GetRealCenter() const
 {
 	return realCenter;
 }
 
-Vector2 Tile::ImCenter() const
+Vector2 Tile::GetImCenter() const
 {
 	return imCenter;
 }
 
-DWORD Tile::Color() const
+DWORD Tile::GetColor() const
 {
 	return color;
 }

@@ -19,8 +19,8 @@ Wall::~Wall()
 
 void Wall::Initiate(HGE* hge, const Vector3& center)
 {
-	float tileWidth = grid->GetTileByIndex({ 0, 0 }).Size() * 2;
-	float tileHeight = grid->GetTileByIndex({ 0, 0 }).Size() * 2;
+	float tileWidth = grid->GetTileByIndex({ 0, 0 }).GetSize() * 2;
+	float tileHeight = grid->GetTileByIndex({ 0, 0 }).GetSize() * 2;
 
 	if (orient)
 	{
@@ -61,22 +61,17 @@ void Wall::Render(HGE* hge)
 	}
 }
 
-Vector3 Wall::RealCenter()
+Vector3 Wall::GetRealCenter() const
 {
 	return realCenter;
-}
-
-bool Wall::Orient()
-{
-	return orient;
 }
 
 void Wall::InitiateWallTile(int index, HGE* hge)
 {
 	wallGrid[index] = new WallTile();
 	wallGrid[index]->SetOrient(orient);
-	float tileWidth = wallGrid[index]->Width();
-	float tileHeight = wallGrid[index]->Height();
+	float tileWidth = wallGrid[index]->GetWidth();
+	float tileHeight = wallGrid[index]->GetHeight();
 
 	Vector3 tileCenter;
 	int	offSet = TileInitHelp::QuadrantBasedOffset(index);

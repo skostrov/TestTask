@@ -13,10 +13,6 @@ public:
 	static HgeManager* Instance();
 
 	HGE* Hge();
-	void SetHge(HGE* hge_);
-
-	Game* GetGame();
-	void SetGame(Game* game_);
 
 	static bool FrameFunc();
 	static bool RenderFunc();

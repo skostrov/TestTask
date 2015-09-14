@@ -9,7 +9,7 @@ class WallTile : public SceneObject
 public:
 
 	WallTile();
-	~WallTile();
+	~WallTile() override;
 
 	void Initiate(HGE* hge, const Vector3& center) override;
 
@@ -18,15 +18,14 @@ public:
 
 	void Render(HGE* hge) override;
 
-	float Width() const;
-	float Height() const;
+	float GetWidth() const;
+	float GetHeight() const;
 
-	Vector3 RealCenter() const;
+	Vector3 GetRealCenter() const;
 
-	Vector2 ImCenter() const;
+	Vector2 GetImCenter() const;
 
-	DWORD Color() const;
-	void SetColor(DWORD color_);
+	DWORD GetColor() const;
 
 	void SetTexture(HTEXTURE texture);
 
@@ -35,9 +34,11 @@ public:
 	void SetDangerous();
 
 	void SetOrient(bool orient_);
-	bool Orient();
+	bool GetOrient() const;
 
 private:
+
+	void SetColor(DWORD color_);
 
 	const float width = 16.0f;
 	const float height = 32.0f;

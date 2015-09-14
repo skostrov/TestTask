@@ -11,7 +11,7 @@ class Tile : public SceneObject
 public:
 
 	Tile();
-	~Tile();
+	~Tile() override;
 
 	void Initiate(HGE* hge, const Vector3& center) override;
 
@@ -22,14 +22,13 @@ public:
 
 	bool CheckHit(const Vector2& imPoint) const;
 
-	float Size() const;
+	float GetSize() const;
 
-	Vector2 RealCenter() const;
+	Vector2 GetRealCenter() const;
 
-	Vector2 ImCenter() const;
+	Vector2 GetImCenter() const;
 
-	DWORD Color() const;
-	void SetColor(DWORD color_);
+	DWORD GetColor() const;
 
 	void SetTexture(HTEXTURE texture);
 
@@ -57,6 +56,8 @@ public:
 	void SetFinish();
 
 private:
+
+	void SetColor(DWORD color_);
 
 	const float size = 16.0f;			// Половина стороны тайла
 

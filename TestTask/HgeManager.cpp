@@ -14,10 +14,6 @@ HgeManager::HgeManager()
 
 HgeManager::~HgeManager()
 {
-	delete gameFont;
-	delete game;
-
-	delete instance;
 }
 
 HgeManager* HgeManager::Instance()
@@ -37,21 +33,6 @@ HgeManager* HgeManager::Instance()
 HGE* HgeManager::Hge()
 {
 	return hge;
-}
-
-void HgeManager::SetHge(HGE* hge_)
-{
-	hge = hge_;
-}
-
-Game* HgeManager::GetGame()
-{
-	return game;
-}
-
-void HgeManager::SetGame(Game* game_)
-{
-	game = game_;
 }
 
 bool HgeManager::FrameFunc()
@@ -120,7 +101,12 @@ void HgeManager::ThrowMassage()
 
 void HgeManager::Release()
 {
+	Isometric::Instance()->Release();
+
 	game->Release(hge);
+
+	delete gameFont;
+	delete game;
 
 	hge->System_Shutdown();
 	hge->Release();

@@ -11,7 +11,7 @@ class Map : public SceneObject
 public:
 
 	Map(const iVector2& finishPos_, HTEXTURE texture);
-	virtual ~Map();
+	~Map() override;
 
 	void Initiate(HGE* hge, const Vector3& center) override;
 
@@ -28,7 +28,6 @@ public:
 	Tile& GetTileByIndex(const iVector2& index);
 
 	iVector2 GetFinishPos() const;
-	void SetFinishPos(const iVector2& finishPos_);
 
 protected:
 

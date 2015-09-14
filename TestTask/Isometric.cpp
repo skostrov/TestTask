@@ -13,14 +13,6 @@ Isometric::Isometric()
 
 Isometric::~Isometric()
 {
-	for (auto& i : transformations)
-	{
-		delete i;
-	}
-
-	transformations.clear();
-
-	delete instance;
 }
 
 Isometric* Isometric::Instance()
@@ -98,5 +90,15 @@ void Isometric::AddTransformation(TransName axis, float angle)
 	default:
 		break;
 	}
+}
+
+void Isometric::Release()
+{
+	for (auto& i : transformations)
+	{
+		delete i;
+	}
+
+	transformations.clear();
 }
 

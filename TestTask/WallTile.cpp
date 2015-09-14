@@ -57,27 +57,27 @@ void WallTile::Render(HGE* hge)
 	hge->Gfx_RenderQuad(&quad);
 }
 
-float WallTile::Width() const
+float WallTile::GetWidth() const
 {
 	return width;
 }
 
-float WallTile::Height() const
+float WallTile::GetHeight() const
 {
 	return height;
 }
 
-Vector3 WallTile::RealCenter() const
+Vector3 WallTile::GetRealCenter() const
 {
 	return realCenter;
 }
 
-Vector2 WallTile::ImCenter() const
+Vector2 WallTile::GetImCenter() const
 {
 	return imCenter;
 }
 
-DWORD WallTile::Color() const
+DWORD WallTile::GetColor() const
 {
 	return color;
 }
@@ -121,7 +121,7 @@ void WallTile::SetOrient(bool orient_)
 	orient = orient_;
 }
 
-bool WallTile::Orient()
+bool WallTile::GetOrient() const
 {
 	return orient;
 }

@@ -11,7 +11,7 @@ class Wall : public SceneObject
 public:
 
 	Wall(TraversableMap* grid_, bool orient_, vector<int> cannonPos_, HTEXTURE safeTexture_, HTEXTURE dangerousTexture_);
-	~Wall();
+	~Wall() override;
 
 	void Initiate(HGE* hge, const Vector3& center) override;
 
@@ -20,9 +20,7 @@ public:
 
 	void Render(HGE* hge) override;
 
-	Vector3 RealCenter();
-
-	bool Orient();
+	Vector3 GetRealCenter() const;
 
 private:
 
