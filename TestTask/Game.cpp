@@ -5,7 +5,10 @@
 #include "HgeManager.h"
 
 
-Game::Game() : status(GameStatus::INPROCESS)
+Game::Game() : status(GameStatus::INPROCESS),
+	circleGuard(false),
+	iLineGuard(false),
+	jLineGuard(false)
 {
 }
 

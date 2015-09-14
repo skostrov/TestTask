@@ -2,7 +2,7 @@
 #include "Isometric.h"
 
 
-WallTile::WallTile() : isSafe(true)
+WallTile::WallTile() : isSafe(true), orient(false)
 {
 	quad.blend = BLEND_ALPHABLEND | BLEND_COLORMUL | BLEND_ZWRITE;
 }

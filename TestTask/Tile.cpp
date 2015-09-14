@@ -1,7 +1,16 @@
 #include "Tile.h"
 
 
-Tile::Tile() : isSelected(false), isBlocked(false), isSafe(true), isOccupiedByPlayer(false), isOccupiedByGuard(false), isFinish(false)
+Tile::Tile() : realCenter(),
+	imCenter(),
+	quad(),
+	color(0),
+	isSelected(false), 
+	isBlocked(false), 
+	isSafe(true), 
+	isOccupiedByPlayer(false), 
+	isOccupiedByGuard(false), 
+	isFinish(false)
 {
 	quad.blend = BLEND_ALPHABLEND | BLEND_COLORMUL | BLEND_ZWRITE;
 }

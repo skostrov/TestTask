@@ -2,7 +2,11 @@
 #include "Tile.h"
 
 
-Character::Character(TraversableMap* grid_, const iVector2& startPos, HTEXTURE texture) : grid(grid_), currentPos(startPos), nextPos(startPos), destinationPos(startPos), pather(grid)
+Character::Character(TraversableMap* grid_, const iVector2& startPos, HTEXTURE texture) : grid(grid_), 
+	currentPos(startPos), 
+	nextPos(startPos), 
+	destinationPos(startPos), 
+	pather(grid)
 {
 	quad.blend = BLEND_ALPHABLEND | BLEND_COLORMUL | BLEND_ZWRITE;
 

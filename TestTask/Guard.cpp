@@ -1,7 +1,8 @@
 #include "Guard.h"
 
 
-Guard::Guard(TraversableMap* grid_, const iVector2& startPos, HTEXTURE texture, GuardRouteType routeType_) : Character(grid_, startPos, texture), route(routeType_)
+Guard::Guard(TraversableMap* grid_, const iVector2& startPos, HTEXTURE texture, GuardRouteType routeType_) : Character(grid_, startPos, texture), 
+	route(routeType_)
 {
 }
 

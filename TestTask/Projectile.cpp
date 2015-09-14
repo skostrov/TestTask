@@ -6,7 +6,9 @@ Projectile::Projectile(TraversableMap* grid_, const iVector2& startPos, const iV
 	currentPos(startPos),
 	nextPos(startPos),
 	destinationPos(finishPos),
-	texture(texture_)
+	texture(texture_),
+	sprite(nullptr),
+	particles(nullptr)
 {
 }
 

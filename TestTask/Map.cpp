@@ -2,7 +2,9 @@
 #include "HgeManager.h"
 
 
-Map::Map(const iVector2& finishPos_, HTEXTURE texture) : finishPos(finishPos_), tileTexture(texture)
+Map::Map(const iVector2& finishPos_, HTEXTURE texture) : tileTexture(texture),
+	realCenter(),
+	finishPos(finishPos_)
 {
 }
 
