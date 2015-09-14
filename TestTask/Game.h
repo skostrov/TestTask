@@ -8,7 +8,7 @@
 
 enum class GameStatus
 {
-	MENU,
+	VICTORY,
 	GAMEOVER,
 	INPROCESS
 };
@@ -33,6 +33,10 @@ public:
 
 	void CheckPlayer();
 
+	void DisplayVictory();
+	void DisplayDefeat();
+	void Restart();
+
 private:
 
 	GameStatus status;
@@ -48,11 +52,15 @@ private:
 	const char* guardTextureName = "redball.png";
 	const char* particlesTextureName = "particles.png";
 
+	const char* menuFontName = "font.fnt";
+
 	HTEXTURE mapTexture;
 	HTEXTURE safeWallTexture;
 	HTEXTURE playerTexture;
 	HTEXTURE guardTexture;
 	HTEXTURE particlesTexture;
+
+	hgeFont* menuFont;
 
 };
 

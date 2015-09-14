@@ -36,7 +36,7 @@ public:
 private:
 
 	const int emission = 1000;
-	const float velocity = 20.0f;
+	const float velocity = 30.0f;
 
 	const Vector2 texOffset = { 70, 70 };
 	const float subtexSize = 20;

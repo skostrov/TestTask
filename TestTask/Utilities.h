@@ -24,6 +24,7 @@
 #include <hge.h>
 #include <hgesprite.h>
 #include <hgeparticle.h>
+#include <hgefont.h>
 
 using namespace std;
 
