@@ -21,11 +21,11 @@ Isometric* Isometric::Instance()
 	{
 		instance = new Isometric();
 
-		instance->AddTransformation(TransName::RZ, -45.0f);
-		instance->AddTransformation(TransName::RX, 60.0f);
-		instance->AddTransformation(TransName::PZ, 60.0f);
-	}
-
+		instance->AddTransformation(TransName::RZ, -45.0f);			// Для того, чтобы в игре использовался вид сверху
+		instance->AddTransformation(TransName::RX, 60.0f);			// необходимо закомментировать эти строки (они
+		instance->AddTransformation(TransName::PZ, 60.0f);			// отвечают за поворот вокруг оси Oz на -45 градусов,
+	}																// поворот вокруг оси Ox на 60 и проекцию на плоскость
+																	// экрана соответственно).
 	return instance;
 }
 
@@ -35,10 +35,10 @@ Vector3 Isometric::ToImaginary(const Vector3& point)
 
 	for (const auto& i : transformations)
 	{
-		i->Rotate(result);
-	}
-
-	result.x += screenOffset.x;
+		i->Rotate(result);						// При переходе из реальных координат в экранные
+	}											// преобразования применяются в прямом порядке.
+												// В методе Rotate происходит умножение на вектора
+	result.x += screenOffset.x;					// point на матрицу поворота.
 	result.y += screenOffset.y;
 
 	return result;
@@ -53,10 +53,10 @@ Vector3 Isometric::ToReal(const Vector3& point)
 
 	for (auto i = transformations.crbegin(); i != transformations.crend(); ++i)
 	{
-		(*i)->ReverseRotate(result);
-	}
-
-	return result;
+		(*i)->ReverseRotate(result);		// При переходе из экранных в реальные координаты
+	}										// все преобразования применяются в обратном порядке.
+											// В методе ReverseRotate происходит умножение 
+	return result;							// на матрицу, обратную к матрице поворота.
 }
 
 void Isometric::AddTransformation(TransName axis, float angle)

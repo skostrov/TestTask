@@ -40,20 +40,26 @@ private:
 
 	void SetColor(DWORD color_);
 
-	const float width = 16.0f;
-	const float height = 32.0f;
+	const float width = 16.0f;			// Половина ширины тайла
+	const float height = 32.0f;			// Половина высоты тайла
 
-	Vector3 realCenter;
-	Vector2 imCenter;
+	Vector3 realCenter;					// Экранные координаты центра тайла 
+										// до применения аффинных преобразований вращения,
+										// проекции и смещения в центр экрана
 
-	hgeQuad quad;
+	Vector2 imCenter;					// Экранные координаты центра тайла
+										// после применения преобразований
+
+	hgeQuad quad;						// Тайл в экранных координатах после применения
+										// преобразований (имеет форму ромба, используется
+										// при отрисовке)
 
 	DWORD color;
 
 	bool isSafe;
 
-	bool orient;					// флаг для определения ориентации стены в простарнстве
-									// (true - правая, false - левая)
+	bool orient;						// флаг для определения ориентации стены в простарнстве
+										// (true - правая, false - левая)
 
 };
 

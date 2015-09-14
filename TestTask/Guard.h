@@ -25,7 +25,7 @@ private:
 	void OccupyTile(const iVector2& index) const override;
 	void FreeTile(const iVector2& index) const override;
 
-	GuardRoute route;
-
+	GuardRoute route;											// Машрут стражника на карте (реализован как 
+																// циклический список индексов тайлов на карте)
 };
 

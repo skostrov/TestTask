@@ -23,18 +23,23 @@ public:
 
 private:
 
-	void Fire();
+	void Fire();						// Добавление новых снарядов в projectiles
+										// (за отрисовку и обновление снарядов
+										// отвечает пушка)
 
-	void FreeProjectiles();
+	void FreeProjectiles();				// Удаление снарядов, достигнувших firePos,
+										// из списка projectiles
 
-	HTEXTURE projTexture;
+	HTEXTURE projTexture;				// Текстура частиц снаряда (сама пушка
+										// не отрисовывается)
 
 	list<Projectile*> projectiles;
 
 	TraversableMap* grid;
 
-	iVector2 position;
-	iVector2 firePos;
+	iVector2 position;					// Индекс тайла, в котором находится пушка
+
+	iVector2 firePos;					// Индекс тайла, в который направляются снаряды
 
 	float fireDelay;
 	float accTime;

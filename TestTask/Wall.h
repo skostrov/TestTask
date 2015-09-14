@@ -24,20 +24,29 @@ public:
 
 private:
 
-	void InitiateWallTile(int index, HGE* hge);
+	void InitiateWallTile(int index, HGE* hge);		// Вспомогательная функция по
+													// инициализации отдельных тайлов
+													// на стене (каждому тайлу 
+													// передается его центр, который
+													// вычисляется как realCenter плюс
+													// некоторое смещение, зависящее от
+													// индекса тайла
 
 	HTEXTURE safeTexture;
 	HTEXTURE dangerousTexture;
 
-	Vector3 realCenter;
+	Vector3 realCenter;								// Экранные координаты центра стены 
+													// до применения аффинных преобразований вращения,
+													// проекции и смещения в центр экрана
 
 	WallTile* wallGrid[mapSize];
 
-	vector<int> cannonPos;
+	vector<int> cannonPos;						
 
 	TraversableMap* grid;
 
-	bool orient;
+	bool orient;									// флаг для определения ориентации стены в простарнстве
+													// (true - правая, false - левая)
 
 };
 

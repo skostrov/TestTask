@@ -12,7 +12,7 @@ public:
 
 	Projectile(TraversableMap* grid_, const iVector2& startPos, const iVector2& finishPos, HTEXTURE texture_);
 	Projectile(const Projectile& other);
-	~Projectile();
+	~Projectile() override;
 
 	void Initiate(HGE* hge, const Vector3& center) override;
 
@@ -36,11 +36,13 @@ private:
 
 	void Move(float dt);
 
-	const int emission = 1000;
+	const int emission = 1000;							// Количество частиц, генерируемых в секунду
 	const float velocity = 40.0f;
 
-	const Vector2 texOffset = { 70, 70 };
-	const float subtexSize = 20;
+	const Vector2 texOffset = { 70, 70 };				// Смещение исользуемой подтукстуры 
+														// в файле с текстурой
+
+	const float subtexSize = 20;						// Размер используемой подтекстуры
 
 	HTEXTURE texture;
 	hgeSprite* sprite;

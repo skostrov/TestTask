@@ -23,7 +23,9 @@ public:
 	void AddListener(MapListener* listener);
 	void RemoveListener(MapListener* listener);
 
-	iVector2 GetSelectedTileIndex(const Vector2& point) const;
+	iVector2 GetSelectedTileIndex(const Vector2& point) const;			// Возвращает индекс тайла, на который
+																		// указывает курсор мыши (point - координаты
+																		// курсора)
 
 	Tile& GetTileByIndex(const iVector2& index);
 
@@ -31,7 +33,13 @@ public:
 
 protected:
 
-	void InitiateTile(Tile& tile, const iVector2& index, HGE* hge);
+	void InitiateTile(Tile& tile, const iVector2& index, HGE* hge);		// Вспомогательная функция по
+																		// инициализации отдельных тайлов
+																		// на карте (каждому тайлу 
+																		// передается его центр, который
+																		// вычисляется как realCenter плюс
+																		// некоторое смещение, зависящее от
+																		// индекса тайла
 
 	HTEXTURE tileTexture;
 
@@ -41,9 +49,11 @@ protected:
 
 	Tile grid[mapSize][mapSize];
 
-	iVector2 finishPos;
+	iVector2 finishPos;								
 
-	list<MapListener*> listeners;
+	list<MapListener*> listeners;					// Список, состоящий из стражников и игрока,
+													// подписанных на обновление карты (добавление
+													// препятствий)
 
 	void InformListeners() const;
 
