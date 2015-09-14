@@ -21,6 +21,7 @@ public:
 	void Render(HGE* hge) override;
 
 	void AddListener(MapListener* listener);
+	void RemoveListener(MapListener* listener);
 
 	iVector2 GetSelectedTileIndex(const Vector2& point) const;
 

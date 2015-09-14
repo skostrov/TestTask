@@ -2,7 +2,7 @@
 
 #include "Utilities.h"
 #include "SceneObject.h"
-#include "Character.h"
+#include "Guard.h"
 #include "TraversableMap.h"
 
 
@@ -32,6 +32,9 @@ public:
 	GameStatus Status();
 
 	void CheckPlayer();
+	void CheckGuards();
+
+	void SpawnGuards();
 
 	void DisplayVictory();
 	void DisplayDefeat();
@@ -39,11 +42,14 @@ public:
 
 private:
 
+	const int guardNumber = 3;
+
 	GameStatus status;
 
 	Character* player;
 	TraversableMap* gameField;
 
+	list<Guard*> guards;
 	list<SceneObject*> objects;
 
 	const char* mapTextureName = "tile.png";

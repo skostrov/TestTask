@@ -76,6 +76,12 @@ void Map::AddListener(MapListener* listener)
 	listeners.push_back(listener);
 }
 
+void Map::RemoveListener(MapListener* listener)
+{
+	auto i = find(listeners.begin(), listeners.end(), listener);
+	listeners.erase(i);
+}
+
 void Map::InitiateTile(Tile& tile, const iVector2& index, HGE* hge)
 {
 	float tileCenterX = 0;

@@ -31,13 +31,13 @@
     <Filter Include="Moving Objects\Header Files">
       <UniqueIdentifier>{e28b27cf-c4e6-45c1-83c8-d419482c8438}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Static Objects">
+    <Filter Include="Game Environment">
       <UniqueIdentifier>{5264d58a-5a49-4b4d-ad81-384adf1cf330}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Static Objects\Header Files">
+    <Filter Include="Game Environment\Header Files">
       <UniqueIdentifier>{fa640c36-281e-4cf0-9a6b-4bd3d102d11c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Static Objects\Source Files">
+    <Filter Include="Game Environment\Source Files">
       <UniqueIdentifier>{74e3da37-2ce8-4e4f-bd13-e5f1ae75d953}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -91,19 +91,19 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="WallTile.cpp">
-      <Filter>Static Objects\Source Files</Filter>
+      <Filter>Game Environment\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Wall.cpp">
-      <Filter>Static Objects\Source Files</Filter>
+      <Filter>Game Environment\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Tile.cpp">
-      <Filter>Static Objects\Source Files</Filter>
+      <Filter>Game Environment\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TraversableMap.cpp">
-      <Filter>Static Objects\Source Files</Filter>
+      <Filter>Game Environment\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Map.cpp">
-      <Filter>Static Objects\Source Files</Filter>
+      <Filter>Game Environment\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Cannon.cpp">
       <Filter>Moving Objects\Source Files</Filter>
@@ -159,19 +159,19 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="WallTile.h">
-      <Filter>Static Objects\Header Files</Filter>
+      <Filter>Game Environment\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Wall.h">
-      <Filter>Static Objects\Header Files</Filter>
+      <Filter>Game Environment\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Tile.h">
-      <Filter>Static Objects\Header Files</Filter>
+      <Filter>Game Environment\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Map.h">
-      <Filter>Static Objects\Header Files</Filter>
+      <Filter>Game Environment\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TraversableMap.h">
-      <Filter>Static Objects\Header Files</Filter>
+      <Filter>Game Environment\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Cannon.h">
       <Filter>Moving Objects\Header Files</Filter>
