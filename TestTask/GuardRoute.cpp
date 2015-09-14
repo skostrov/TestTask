@@ -71,3 +71,8 @@ iVector2 GuardRoute::NextKeyPoint()
 	return result;
 }
 
+GuardRouteType GuardRoute::GetType()
+{
+	return type;
+}
+

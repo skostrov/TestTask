@@ -10,7 +10,7 @@ class Map : public SceneObject
 
 public:
 
-	Map(HTEXTURE texture);
+	Map(const iVector2& finishPos_, HTEXTURE texture);
 	virtual ~Map();
 
 	void Initiate(HGE* hge, const Vector3& center) override;
@@ -27,6 +27,9 @@ public:
 
 	Tile& GetTileByIndex(const iVector2& index);
 
+	iVector2 GetFinishPos() const;
+	void SetFinishPos(const iVector2& finishPos_);
+
 protected:
 
 	void InitiateTile(Tile& tile, const iVector2& index, HGE* hge);
@@ -38,6 +41,8 @@ protected:
 													// проекции и смещения в центр экрана
 
 	Tile grid[mapSize][mapSize];
+
+	iVector2 finishPos;
 
 	list<MapListener*> listeners;
 

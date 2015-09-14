@@ -53,6 +53,9 @@ public:
 	void SetOccupiedByGuard();
 	void SetFreeOfGuard();
 
+	bool IsFinish() const;
+	void SetFinish();
+
 private:
 
 	const float size = 16.0f;			// Половина стороны тайла
@@ -75,6 +78,7 @@ private:
 	bool isSafe;
 	bool isOccupiedByPlayer;
 	bool isOccupiedByGuard;
+	bool isFinish;
 
 };
 

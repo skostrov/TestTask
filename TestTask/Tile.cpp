@@ -1,7 +1,7 @@
 #include "Tile.h"
 
 
-Tile::Tile() : isSelected(false), isBlocked(false), isSafe(true), isOccupiedByPlayer(false), isOccupiedByGuard(false)
+Tile::Tile() : isSelected(false), isBlocked(false), isSafe(true), isOccupiedByPlayer(false), isOccupiedByGuard(false), isFinish(false)
 {
 	quad.blend = BLEND_ALPHABLEND | BLEND_COLORMUL | BLEND_ZWRITE;
 }
@@ -132,7 +132,14 @@ void Tile::SetUnselected()
 	{
 		if ((!isOccupiedByPlayer) && (!isOccupiedByGuard) && isSafe)
 		{
-			SetColor(White);
+			if (!isFinish)
+			{
+				SetColor(White);
+			}
+			else
+			{
+				SetColor(Blue);
+			}
 		}
 	}
 }
@@ -211,5 +218,17 @@ void Tile::SetFreeOfGuard()
 	isOccupiedByGuard = false;
 
 	SetColor(White);
+}
+
+bool Tile::IsFinish() const
+{
+	return isFinish;
+}
+
+void Tile::SetFinish()
+{
+	isFinish = true;
+
+	SetColor(Blue);
 }
 

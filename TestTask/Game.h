@@ -40,9 +40,12 @@ public:
 	void DisplayDefeat();
 	void Restart();
 
+	void SetFont(hgeFont* menuFont_);
+
 private:
 
-	const int guardNumber = 3;
+	const iVector2 start = { 0, 0 };
+	const iVector2 finish = { mapSize - 1, mapSize - 1 };
 
 	GameStatus status;
 
@@ -52,13 +55,15 @@ private:
 	list<Guard*> guards;
 	list<SceneObject*> objects;
 
+	bool circleGuard;
+	bool iLineGuard;
+	bool jLineGuard;
+
 	const char* mapTextureName = "tile.png";
 	const char* safeWallTextureName = "safewall.png";
 	const char* playerTextureName = "greenball.png";
 	const char* guardTextureName = "redball.png";
 	const char* particlesTextureName = "particles.png";
-
-	const char* menuFontName = "font.fnt";
 
 	HTEXTURE mapTexture;
 	HTEXTURE safeWallTexture;

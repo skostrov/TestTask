@@ -21,6 +21,8 @@ public:
 	void OccupyTile(const iVector2& index) override;
 	void FreeTile(const iVector2& index) override;
 
+	GuardRouteType GetRouteType();
+
 private:
 
 	GuardRoute route;

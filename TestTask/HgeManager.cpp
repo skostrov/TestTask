@@ -14,6 +14,7 @@ HgeManager::HgeManager()
 
 HgeManager::~HgeManager()
 {
+	delete gameFont;
 	delete game;
 
 	delete instance;
@@ -27,6 +28,7 @@ HgeManager* HgeManager::Instance()
 
 		instance->hge = nullptr;
 		instance->game = new Game();
+		instance->gameFont = nullptr;
 	}
 
 	return instance;
@@ -104,6 +106,9 @@ bool HgeManager::Initiate()
 void HgeManager::Start()
 {
 	game->Initiate(hge, { 0, 0, 0 });
+
+	gameFont = new hgeFont(gameFontName);
+	game->SetFont(gameFont);
 
 	hge->System_Start();
 }

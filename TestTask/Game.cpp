@@ -24,8 +24,6 @@ Game::~Game()
 	}
 
 	guards.clear();
-
-	delete menuFont;
 }
 
 void Game::Initiate(HGE* hge, const Vector3& center)
@@ -36,14 +34,10 @@ void Game::Initiate(HGE* hge, const Vector3& center)
 	particlesTexture = hge->Texture_Load(particlesTextureName);
 	safeWallTexture = hge->Texture_Load(safeWallTextureName);
 
-	menuFont = new hgeFont(menuFontName);
-
-	TraversableMap* gameMap = new TraversableMap(mapTexture);
+	TraversableMap* gameMap = new TraversableMap(finish, mapTexture);
 	Wall* rightWall = new Wall(gameMap, true, {  }, safeWallTexture, safeWallTexture);
 	Wall* leftWall = new Wall(gameMap, false, { mapSize / 3, mapSize / 3 - 1, mapSize * 2 / 3, mapSize * 2 / 3 + 1 }, safeWallTexture, safeWallTexture);
-	Character* userPlayer = new Character(gameMap, { 0, 0 }, playerTexture);
-	Guard* guard = new Guard(gameMap, { mapSize / 2, mapSize / 10 }, guardTexture, GuardRouteType::ILINE);
-	Guard* guard1 = new Guard(gameMap, { mapSize / 10, mapSize / 2 }, guardTexture, GuardRouteType::JLINE);
+	Character* userPlayer = new Character(gameMap, start, playerTexture);
 	Cannon* cannon = new Cannon(gameMap, { 0, mapSize / 3 }, { mapSize - 1, mapSize / 3 }, 3.0f, particlesTexture);
 	Cannon* cannon2 = new Cannon(gameMap, { 0, mapSize * 2 / 3 + 1 }, { mapSize - 1, mapSize * 2 / 3 + 1 }, 3.5f, particlesTexture);
 
@@ -51,15 +45,11 @@ void Game::Initiate(HGE* hge, const Vector3& center)
 	player = userPlayer;
 
 	gameMap->AddListener(userPlayer);
-	gameMap->AddListener(guard);
-	gameMap->AddListener(guard1);
 
 	gameMap->Initiate(hge, { 0, 0, 0 });
 	rightWall->Initiate(hge, { 0, 0, 0 });
 	leftWall->Initiate(hge, { 0, 0, 0 });
 	userPlayer->Initiate(hge, { 0, 0, 0 });
-	guard->Initiate(hge, { 0, 0, 0 });
-	guard1->Initiate(hge, { 0, 0, 0 });
 	cannon->Initiate(hge, { 0, 0, 0 });
 	cannon2->Initiate(hge, { 0, 0, 0 });
 	
@@ -70,8 +60,9 @@ void Game::Initiate(HGE* hge, const Vector3& center)
 	objects.push_back(cannon);
 	objects.push_back(cannon2);
 
-	guards.push_back(guard);
-	guards.push_back(guard1);
+	circleGuard = false;
+	iLineGuard = false;
+	jLineGuard = false;
 }
 
 void Game::Release(HGE* hge)
@@ -189,6 +180,13 @@ void Game::CheckPlayer()
 	{
 		status = GameStatus::GAMEOVER;
 	}
+	else
+	{
+		if (playerCurPos == gameField->GetFinishPos())
+		{
+			status = GameStatus::VICTORY;
+		}
+	}
 }
 
 void Game::CheckGuards()
@@ -202,6 +200,30 @@ void Game::CheckGuards()
 		if (!gameField->GetTileByIndex(guardCurPos).IsSafe() ||
 			!gameField->GetTileByIndex(guardNextPos).IsSafe())
 		{
+
+			switch ((*i)->GetRouteType())
+			{
+				
+			case GuardRouteType::CIRCLE:
+
+				circleGuard = false;
+
+				break;
+
+			case GuardRouteType::ILINE:
+
+				iLineGuard = false;
+
+				break;
+
+			case GuardRouteType::JLINE:
+
+				jLineGuard = false;
+
+				break;
+
+			}
+
 			gameField->RemoveListener(*i);
 			delete *i;
 			i = guards.erase(i);
@@ -215,13 +237,37 @@ void Game::CheckGuards()
 
 void Game::SpawnGuards()
 {
-	while (guards.size() < guardNumber)
+	if (!circleGuard)
 	{
-		Guard* newGuard = new Guard(gameField, { mapSize / 2, mapSize / 10 }, guardTexture, GuardRouteType::ILINE);
+		Guard* newGuard = new Guard(gameField, { mapSize / 10, mapSize / 10 }, guardTexture, GuardRouteType::CIRCLE);
+		circleGuard = true;
+
 		newGuard->Initiate(HgeManager::Instance()->Hge(), { 0, 0, 0 });
 		guards.push_back(newGuard);
 		gameField->AddListener(newGuard);
 	}
+
+	if (!iLineGuard)
+	{
+		Guard* newGuard = new Guard(gameField, { mapSize / 2, mapSize / 10 }, guardTexture, GuardRouteType::ILINE);
+		iLineGuard = true;
+
+		newGuard->Initiate(HgeManager::Instance()->Hge(), { 0, 0, 0 });
+		guards.push_back(newGuard);
+		gameField->AddListener(newGuard);
+	}
+
+	if (!jLineGuard)
+	{
+		Guard* newGuard = new Guard(gameField, { mapSize / 10, mapSize / 2 }, guardTexture, GuardRouteType::JLINE);
+		jLineGuard = true;
+
+		newGuard->Initiate(HgeManager::Instance()->Hge(), { 0, 0, 0 });
+		guards.push_back(newGuard);
+		gameField->AddListener(newGuard);
+	}
+
+	
 }
 
 void Game::DisplayVictory()
@@ -248,13 +294,6 @@ void Game::DisplayDefeat()
 
 void Game::Restart()
 {
-	for (auto& i : objects)
-	{
-		delete i;
-	}
-
-	objects.clear();
-
 	for (auto& i : guards)
 	{
 		delete i;
@@ -262,8 +301,18 @@ void Game::Restart()
 
 	guards.clear();
 
-	delete menuFont;
+	for (auto& i = objects.rbegin(); i != objects.rend(); ++i)
+	{
+		delete *i;
+	}
+
+	objects.clear();
 
 	Initiate(HgeManager::Instance()->Hge(), { 0, 0, 0 });
+}
+
+void Game::SetFont(hgeFont* menuFont_)
+{
+	menuFont = menuFont_;
 }
 

@@ -10,7 +10,7 @@ class TraversableMap : public Map, public micropather::Graph
 
 public:
 
-	TraversableMap(HTEXTURE texture);
+	TraversableMap(const iVector2& finishPos_, HTEXTURE texture);
 	~TraversableMap();
 
 private:

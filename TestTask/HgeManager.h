@@ -36,6 +36,9 @@ private:
 
 	HGE* hge;
 	Game* game;
+	hgeFont* gameFont;
+
+	const char* gameFontName = "font1.fnt";
 
 };
 

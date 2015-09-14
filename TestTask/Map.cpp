@@ -2,7 +2,7 @@
 #include "HgeManager.h"
 
 
-Map::Map(HTEXTURE texture) : tileTexture(texture)
+Map::Map(const iVector2& finishPos_, HTEXTURE texture) : finishPos(finishPos_), tileTexture(texture)
 {
 }
 
@@ -21,6 +21,8 @@ void Map::Initiate(HGE* hge, const Vector3& center)
 			InitiateTile(grid[i][j], { i, j }, hge);
 		}
 	}
+
+	grid[finishPos.i][finishPos.j].SetFinish();
 
 }
 
@@ -132,5 +134,15 @@ void Map::InformListeners() const
 	{
 		i->OnMapChanged();
 	}
+}
+
+iVector2 Map::GetFinishPos() const
+{
+	return finishPos;
+}
+
+void Map::SetFinishPos(const iVector2& finishPos_)
+{
+	finishPos = finishPos_;
 }
 

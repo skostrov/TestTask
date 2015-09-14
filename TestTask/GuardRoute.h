@@ -20,6 +20,8 @@ public:
 
 	iVector2 NextKeyPoint();
 
+	GuardRouteType GetType();
+
 private:
 
 	const iVector2 routeParams = { mapSize / 10, mapSize * 9 / 10 - 1 };

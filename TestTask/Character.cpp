@@ -12,6 +12,8 @@ Character::Character(TraversableMap* grid_, const iVector2& startPos, HTEXTURE t
 
 Character::~Character()
 {
+	FreeTile(currentPos);
+	FreeTile(nextPos);
 }
 
 void Character::Initiate(HGE* hge, const Vector3& center)

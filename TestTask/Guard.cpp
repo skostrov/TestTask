@@ -76,3 +76,8 @@ void Guard::FreeTile(const iVector2& index)
 	grid->GetTileByIndex(index).SetFreeOfGuard();
 }
 
+GuardRouteType Guard::GetRouteType()
+{
+	return route.GetType();
+}
+

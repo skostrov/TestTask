@@ -1,7 +1,7 @@
 #include "TraversableMap.h"
 
 
-TraversableMap::TraversableMap(HTEXTURE texture) : Map(texture)
+TraversableMap::TraversableMap(const iVector2& finishPos_, HTEXTURE texture) : Map(finishPos_, texture)
 {
 }
 
