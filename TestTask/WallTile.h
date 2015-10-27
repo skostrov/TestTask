@@ -2,16 +2,14 @@
 
 #include "Utilities.h"
 #include "SceneObject.h"
-#include "Isometric.h"
 
-
-class Tile : public SceneObject
+class WallTile : public SceneObject
 {
-
+	
 public:
 
-	Tile();
-	~Tile() override;
+	WallTile();
+	~WallTile() override;
 
 	void Initiate(HGE* hge, const Vector3& center) override;
 
@@ -20,11 +18,10 @@ public:
 
 	void Render(HGE* hge) override;
 
-	bool CheckHit(const Vector2& imPoint) const;
+	float GetWidth() const;
+	float GetHeight() const;
 
-	float GetSize() const;
-
-	Vector2 GetRealCenter() const;
+	Vector3 GetRealCenter() const;
 
 	Vector2 GetImCenter() const;
 
@@ -32,36 +29,21 @@ public:
 
 	void SetTexture(HTEXTURE texture);
 
-	bool IsSelected() const;
-	void SetSelected();
-	void SetUnselected();
-
-	bool IsBlocked() const;
-	void SetBlock();
-	void ReleaseBlock();
-
 	bool IsSafe() const;
 	void SetSafe();
 	void SetDangerous();
 
-	bool IsOccupiedByPlayer() const;
-	void SetOccupiedByPlayer();
-	void SetFreeOfPlayer();
-
-	bool IsOccupiedByGuard() const;
-	void SetOccupiedByGuard();
-	void SetFreeOfGuard();
-
-	bool IsFinish() const;
-	void SetFinish();
+	void SetOrient(bool orient_);
+	bool GetOrient() const;
 
 private:
 
 	void SetColor(DWORD color_);
 
-	const float size = 16.0f;			// Половина стороны тайла
+	const float width = 16.0f;			// Половина ширины тайла
+	const float height = 32.0f;			// Половина высоты тайла
 
-	Vector2 realCenter;					// Экранные координаты центра тайла 
+	Vector3 realCenter;					// Экранные координаты центра тайла 
 										// до применения аффинных преобразований вращения,
 										// проекции и смещения в центр экрана
 
@@ -74,12 +56,10 @@ private:
 
 	DWORD color;
 
-	bool isSelected;
-	bool isBlocked;
 	bool isSafe;
-	bool isOccupiedByPlayer;
-	bool isOccupiedByGuard;
-	bool isFinish;
+
+	bool orient;						// флаг для определения ориентации стены в простарнстве
+										// (true - правая, false - левая)
 
 };
 

@@ -1,7 +1,7 @@
 #include "TraversableMap.h"
 
 
-TraversableMap::TraversableMap()
+TraversableMap::TraversableMap(const iVector2& finishPos_, HTEXTURE texture) : Map(finishPos_, texture)
 {
 }
 
@@ -25,7 +25,7 @@ void TraversableMap::AdjacentCost(void* node, std::vector<micropather::StateCost
 	iVector2 index = GraphFormat::NodeToIndex(node);
 
 	const iVector2 moves[8] = { { 1, 0 }, { 1, 1 }, { 0, 1 }, { -1, 1 },					// Всевозможные направления движений
-								{ -1, 0 }, { -1, -1 }, { 0, -1 }, { 1, -1 } };				// на клетчатой доске
+	{ -1, 0 }, { -1, -1 }, { 0, -1 }, { 1, -1 } };											// на клетчатой доске
 
 	const float cost[8] = { 1, FLT_MAX, 1, FLT_MAX, 1, FLT_MAX, 1, FLT_MAX };				// Стоимость движения в каждом из
 																							// направлений (переходы по диагонали
@@ -39,12 +39,12 @@ void TraversableMap::AdjacentCost(void* node, std::vector<micropather::StateCost
 			(neighborIndex.j < 0) || (neighborIndex.j >= mapSize) ||						// тайлы также недоступны для перехода
 			(grid[neighborIndex.i][neighborIndex.j].IsBlocked()))
 		{
-			micropather::StateCost nodeCost = { GraphFormat::IndexToNode( { neighborIndex.i, neighborIndex.j } ), FLT_MAX };
+			micropather::StateCost nodeCost = { GraphFormat::IndexToNode({ neighborIndex.i, neighborIndex.j }), FLT_MAX };
 			adjacent->push_back(nodeCost);
 		}
 		else
 		{
-			micropather::StateCost nodeCost = { GraphFormat::IndexToNode( { neighborIndex.i, neighborIndex.j } ), cost[k] };
+			micropather::StateCost nodeCost = { GraphFormat::IndexToNode({ neighborIndex.i, neighborIndex.j }), cost[k] };
 			adjacent->push_back(nodeCost);
 		}
 	}

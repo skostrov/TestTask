@@ -22,15 +22,30 @@
     <Filter Include="Isometric View\Header Files">
       <UniqueIdentifier>{5237792c-1e09-4fe5-8d52-456559b13458}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Moving Objects">
+      <UniqueIdentifier>{3dba220a-499a-4cc2-9043-5d1b0f51e7d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Moving Objects\Source Files">
+      <UniqueIdentifier>{7ac5d2a6-eaef-44fb-ac1c-9162b003ebfa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Moving Objects\Header Files">
+      <UniqueIdentifier>{e28b27cf-c4e6-45c1-83c8-d419482c8438}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Environment">
+      <UniqueIdentifier>{5264d58a-5a49-4b4d-ad81-384adf1cf330}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Environment\Header Files">
+      <UniqueIdentifier>{fa640c36-281e-4cf0-9a6b-4bd3d102d11c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Environment\Source Files">
+      <UniqueIdentifier>{74e3da37-2ce8-4e4f-bd13-e5f1ae75d953}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TestTask.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SceneObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Tile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ZRotation.cpp">
@@ -51,23 +66,47 @@
     <ClCompile Include="HgeManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Map.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TraversableMap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="AffineRotation.cpp">
       <Filter>Isometric View\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="micropather.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Character.cpp">
+    <ClCompile Include="MapListener.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>Moving Objects\Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Guard.cpp">
+      <Filter>Moving Objects\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GuardRoute.cpp">
+      <Filter>Moving Objects\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Projectile.cpp">
+      <Filter>Moving Objects\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WallTile.cpp">
+      <Filter>Game Environment\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Wall.cpp">
+      <Filter>Game Environment\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Game Environment\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TraversableMap.cpp">
+      <Filter>Game Environment\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Game Environment\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Cannon.cpp">
+      <Filter>Moving Objects\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -75,9 +114,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SceneObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Tile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZRotation.h">
@@ -98,23 +134,47 @@
     <ClInclude Include="HgeManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Map.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TraversableMap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="AffineRotation.h">
       <Filter>Isometric View\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="micropather.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Character.h">
+    <ClInclude Include="MapListener.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>Moving Objects\Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Guard.h">
+      <Filter>Moving Objects\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Projectile.h">
+      <Filter>Moving Objects\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GuardRoute.h">
+      <Filter>Moving Objects\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WallTile.h">
+      <Filter>Game Environment\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Wall.h">
+      <Filter>Game Environment\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Game Environment\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Game Environment\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TraversableMap.h">
+      <Filter>Game Environment\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Cannon.h">
+      <Filter>Moving Objects\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,6 +1,8 @@
 #include "HgeManager.h"
 #include "TraversableMap.h"
 #include "Character.h"
+#include "Guard.h"
+#include "Projectile.h"
 
 
 HgeManager* HgeManager::instance = nullptr;
@@ -12,14 +14,6 @@ HgeManager::HgeManager()
 
 HgeManager::~HgeManager()
 {
-	for (auto& i : *objects)
-	{
-		delete i;
-	}
-
-	delete objects;
-
-	delete instance;
 }
 
 HgeManager* HgeManager::Instance()
@@ -28,8 +22,9 @@ HgeManager* HgeManager::Instance()
 	{
 		instance = new HgeManager();
 
-		instance->SetHge(nullptr);
-		instance->SetObjects(new list<SceneObject*>());
+		instance->hge = nullptr;
+		instance->game = new Game();
+		instance->gameFont = nullptr;
 	}
 
 	return instance;
@@ -40,24 +35,9 @@ HGE* HgeManager::Hge()
 	return hge;
 }
 
-void HgeManager::SetHge(HGE* hge_)
-{
-	hge = hge_;
-}
-
-list<SceneObject*>* HgeManager::Objects()
-{
-	return objects;
-}
-
-void HgeManager::SetObjects(list<SceneObject*>* objects_)
-{
-	objects = objects_;
-}
-
 bool HgeManager::FrameFunc()
 {
-	if (HgeManager::Instance()->Hge()->Input_GetKeyState(HGEK_ESCAPE))
+	if (HgeManager::Instance()->hge->Input_GetKeyState(HGEK_ESCAPE))
 	{
 		return true;
 	}
@@ -67,12 +47,8 @@ bool HgeManager::FrameFunc()
 		HgeManager::Instance()->Hge()->Input_GetEvent(inputEvent);
 		float dt = HgeManager::Instance()->Hge()->Timer_GetDelta();
 
-
-		for (auto& i : *(HgeManager::Instance()->Objects()))
-		{
-			i->HandleEvent(HgeManager::Instance()->Hge(), inputEvent);
-			i->Update(dt);
-		}
+		HgeManager::Instance()->game->HandleEvent(HgeManager::Instance()->hge, inputEvent);
+		HgeManager::Instance()->game->Update(dt);
 
 		delete inputEvent;
 
@@ -85,10 +61,7 @@ bool HgeManager::RenderFunc()
 	HgeManager::Instance()->Hge()->Gfx_BeginScene();
 	HgeManager::Instance()->Hge()->Gfx_Clear(0);
 
-	for (auto& i : *(HgeManager::Instance()->Objects()))
-	{
-		i->Render(HgeManager::Instance()->Hge());
-	}
+	HgeManager::Instance()->game->Render(HgeManager::Instance()->hge);
 
 	HgeManager::Instance()->Hge()->Gfx_EndScene();
 
@@ -113,16 +86,10 @@ bool HgeManager::Initiate()
 
 void HgeManager::Start()
 {
-	HTEXTURE texture = hge->Texture_Load("greenball.png");
+	game->Initiate(hge, { 0, 0, 0 });
 
-	SceneObject* gameMap = new TraversableMap();
-	SceneObject* ch = new Character((TraversableMap*)gameMap, { 0, 0 }, texture);
-
-	gameMap->Initiate(hge, { 0, 0, 0 } );
-	ch->Initiate(hge, { 0, 0, 0 } );
-
-	objects->push_back(gameMap);
-	objects->push_back(ch);
+	gameFont = new hgeFont(gameFontName);
+	game->SetFont(gameFont);
 
 	hge->System_Start();
 }
@@ -134,10 +101,12 @@ void HgeManager::ThrowMassage()
 
 void HgeManager::Release()
 {
-	for (auto& i : *objects)
-	{
-		i->Release(hge);
-	}
+	Isometric::Instance()->Release();
+
+	game->Release(hge);
+
+	delete gameFont;
+	delete game;
 
 	hge->System_Shutdown();
 	hge->Release();

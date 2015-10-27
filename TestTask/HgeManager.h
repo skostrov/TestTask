@@ -1,7 +1,6 @@
 #pragma once
 
-#include "Utilities.h"
-#include "SceneObject.h"
+#include "Game.h"
 
 
 class HgeManager
@@ -14,10 +13,6 @@ public:
 	static HgeManager* Instance();
 
 	HGE* Hge();
-	void SetHge(HGE* hge_);
-
-	list<SceneObject*>* Objects();
-	void SetObjects(list<SceneObject*>* objects_);
 
 	static bool FrameFunc();
 	static bool RenderFunc();
@@ -36,7 +31,10 @@ private:
 	static HgeManager* instance;
 
 	HGE* hge;
-	list<SceneObject*>* objects;
+	Game* game;
+	hgeFont* gameFont;
+
+	const char* gameFontName = "font1.fnt";
 
 };
 

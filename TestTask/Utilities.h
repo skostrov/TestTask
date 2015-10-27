@@ -22,12 +22,16 @@
 #include <functional>
 #include <cmath>
 #include <hge.h>
+#include <hgesprite.h>
+#include <hgeparticle.h>
+#include <hgefont.h>
 
 using namespace std;
 
 const int mapSize = 20;
 
 const float Pi = 3.14159265f;
+const float Eps = 0.5f;
 
 const DWORD White = 0xFFFFFFFF;
 const DWORD Orange = 0xFFFFA000;
@@ -43,19 +47,30 @@ struct Vector2
 
 	Vector2(float x_ = 0, float y_ = 0) : x(x_), y(y_) {}
 
-	Vector2 operator +(const Vector2& other)
+	Vector2 operator +(const Vector2& other) const
 	{
-		return Vector2 { x + other.x, y + other.y };
+		return Vector2{ x + other.x, y + other.y };
 	}
 
-	Vector2 operator -(const Vector2& other)
+	Vector2 operator -(const Vector2& other) const
 	{
-		return Vector2 { x - other.x, y - other.y } ;
+		return Vector2{ x - other.x, y - other.y };
 	}
 
-	Vector2 operator *(float scalar)
+	Vector2 operator *(float scalar) const
 	{
-		return Vector2 { x * scalar, y * scalar };
+		return Vector2{ x * scalar, y * scalar };
+	}
+
+	Vector2 operator /(float scalar) const
+	{
+		return Vector2{ x / scalar, y / scalar };
+	}
+
+	void operator +=(const Vector2& other)
+	{
+		x += other.x;
+		y += other.y;
 	}
 };
 
@@ -69,17 +84,17 @@ struct Vector3
 
 	Vector3 operator +(const Vector3& other)
 	{
-		return Vector3 { x + other.x, y + other.y, z + other.z };
+		return Vector3{ x + other.x, y + other.y, z + other.z };
 	}
 
 	Vector3 operator -(const Vector3& other)
 	{
-		return Vector3 { x - other.x, y - other.y, z - other.z };
+		return Vector3{ x - other.x, y - other.y, z - other.z };
 	}
 
 	Vector3 operator *(float scalar)
 	{
-		return Vector3 { x * scalar, y * scalar, z * scalar };
+		return Vector3{ x * scalar, y * scalar, z * scalar };
 	}
 };
 
@@ -92,12 +107,39 @@ struct iVector2
 
 	iVector2 operator + (const iVector2& other)
 	{
-		return iVector2 { i + other.i, j + other.j };
+		return iVector2{ i + other.i, j + other.j };
+	}
+
+	void operator += (const iVector2& other)
+	{
+		i += other.i;
+		j += other.j;
 	}
 
 	iVector2 operator - (const iVector2& other)
 	{
-		return iVector2 { i - other.i, j - other.j };
+		return iVector2{ i - other.i, j - other.j };
+	}
+
+	iVector2 operator * (int scalar)
+	{
+		return iVector2{ i * scalar, j * scalar };
+	}
+
+	void operator *= (int scalar)
+	{
+		i *= scalar;
+		j *= scalar;
+	}
+
+	bool operator == (const iVector2& other) const
+	{
+		return (i == other.i) && (j == other.j);
+	}
+
+	bool operator != (const iVector2& other) const
+	{
+		return !(*this == other);
 	}
 };
 
@@ -122,6 +164,12 @@ inline float EuclideanLength(const Vector3& vector)
 	return sqrt(pow(vector.x, 2) + pow(vector.y, 2) + pow(vector.z, 2));
 }
 
+template <class T>
+int Sign(const T& value)
+{
+	return (T(0) < value) - (value < T(0));
+}
+
 namespace GraphFormat
 {
 	inline iVector2 NodeToIndex(void* node)
@@ -138,6 +186,23 @@ namespace GraphFormat
 	inline void* IndexToNode(const iVector2& index)
 	{
 		return (void*)(index.j * mapSize + index.i);
+	}
+}
+
+namespace TileInitHelp
+{
+	const int halfSize = mapSize / 2;
+
+	inline int QuadrantBasedOffset(int index)
+	{
+		if (index >= halfSize)
+		{
+			return index - halfSize;
+		}
+		else
+		{
+			return halfSize - index - 1;
+		}
 	}
 }
 

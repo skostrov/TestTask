@@ -27,7 +27,7 @@
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -46,6 +46,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(SolutionDir)\TestTask\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\TestTask\lib\vc;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -77,20 +79,30 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>hge.lib;hgehelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>libc.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AffineRotation.cpp" />
+    <ClCompile Include="Cannon.cpp" />
     <ClCompile Include="Character.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="Guard.cpp" />
+    <ClCompile Include="GuardRoute.cpp" />
     <ClCompile Include="HgeManager.cpp" />
     <ClCompile Include="Isometric.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="MapListener.cpp" />
     <ClCompile Include="micropather.cpp" />
+    <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="SceneObject.cpp" />
     <ClCompile Include="TestTask.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TraversableMap.cpp" />
+    <ClCompile Include="Wall.cpp" />
+    <ClCompile Include="WallTile.cpp" />
     <ClCompile Include="XRotation.cpp" />
     <ClCompile Include="YRotation.cpp" />
     <ClCompile Include="ZProjection.cpp" />
@@ -98,16 +110,23 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AffineRotation.h" />
+    <ClInclude Include="Cannon.h" />
     <ClInclude Include="Character.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="Guard.h" />
+    <ClInclude Include="GuardRoute.h" />
     <ClInclude Include="HgeManager.h" />
     <ClInclude Include="Isometric.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="MapListener.h" />
     <ClInclude Include="micropather.h" />
+    <ClInclude Include="Projectile.h" />
     <ClInclude Include="SceneObject.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TraversableMap.h" />
     <ClInclude Include="Utilities.h" />
+    <ClInclude Include="Wall.h" />
+    <ClInclude Include="WallTile.h" />
     <ClInclude Include="XRotation.h" />
     <ClInclude Include="YRotation.h" />
     <ClInclude Include="ZProjection.h" />

@@ -1,7 +1,16 @@
 #include "Tile.h"
 
 
-Tile::Tile() : isBlocked(false), isSafe(true)
+Tile::Tile() : realCenter(),
+	imCenter(),
+	quad(),
+	color(0),
+	isSelected(false), 
+	isBlocked(false), 
+	isSafe(true), 
+	isOccupiedByPlayer(false), 
+	isOccupiedByGuard(false), 
+	isFinish(false)
 {
 	quad.blend = BLEND_ALPHABLEND | BLEND_COLORMUL | BLEND_ZWRITE;
 }
@@ -26,17 +35,6 @@ void Tile::Initiate(HGE* hge, const Vector3& center)
 	quad.v[1] = { topRight.x, topRight.y, 0.5f, White, 1, 0 };
 	quad.v[2] = { botRight.x, botRight.y, 0.5f, White, 1, 1 };
 	quad.v[3] = { botLeft.x, botLeft.y, 0.5f, White, 0, 1 };
-
-	isSelected = false;
-	isBlocked = false;
-	isSafe = true;
-	isOccupiedByPlayer = false;
-	isOccupiedByGuard = false;
-}
-
-void Tile::Release(HGE* hge)
-{
-	hge->Texture_Free(quad.tex);
 }
 
 void Tile::HandleEvent(HGE* hge, hgeInputEvent* inputEvent)
@@ -49,7 +47,10 @@ void Tile::HandleEvent(HGE* hge, hgeInputEvent* inputEvent)
 		}
 		else
 		{
-			SetBlock();
+			if ((!isOccupiedByPlayer) && (!isOccupiedByGuard))
+			{
+				SetBlock();
+			}
 		}
 	}
 }
@@ -65,28 +66,28 @@ void Tile::Render(HGE* hge)
 
 bool Tile::CheckHit(const Vector2& imPoint) const
 {
-	Vector3 realPoint = Isometric::Instance()->ToReal( { imPoint.x, imPoint.y, 0 } );
+	Vector3 realPoint = Isometric::Instance()->ToReal({ imPoint.x, imPoint.y, 0 });
 
 	return (realPoint.x >= realCenter.x - size) && (realPoint.x <= realCenter.x + size) &&
 		(realPoint.y >= realCenter.y - size) && (realPoint.y <= realCenter.y + size);
 }
 
-float Tile::Size() const
+float Tile::GetSize() const
 {
 	return size;
 }
 
-Vector2 Tile::RealCenter() const
+Vector2 Tile::GetRealCenter() const
 {
 	return realCenter;
 }
 
-Vector2 Tile::ImCenter() const
+Vector2 Tile::GetImCenter() const
 {
 	return imCenter;
 }
 
-DWORD Tile::Color() const
+DWORD Tile::GetColor() const
 {
 	return color;
 }
@@ -117,13 +118,13 @@ void Tile::SetSelected()
 
 	if (isBlocked)
 	{
-		SetColor(Orange);
+		SetColor(Green);
 	}
 	else
 	{
-		if ((!isOccupiedByPlayer) && (!isOccupiedByGuard))
+		if ((!isOccupiedByPlayer) && (!isOccupiedByGuard) && isSafe)
 		{
-			SetColor(Orange);
+			SetColor(Green);
 		}
 	}
 }
@@ -138,9 +139,16 @@ void Tile::SetUnselected()
 	}
 	else
 	{
-		if ((!isOccupiedByPlayer) && (!isOccupiedByGuard))
+		if ((!isOccupiedByPlayer) && (!isOccupiedByGuard) && isSafe)
 		{
-			SetColor(White);
+			if (!isFinish)
+			{
+				SetColor(White);
+			}
+			else
+			{
+				SetColor(Blue);
+			}
 		}
 	}
 }
@@ -172,11 +180,15 @@ bool Tile::IsSafe() const
 void Tile::SetSafe()
 {
 	isSafe = true;
+
+	SetColor(White);
 }
 
 void Tile::SetDangerous()
 {
 	isSafe = false;
+
+	SetColor(Orange);
 }
 
 bool Tile::IsOccupiedByPlayer() const
@@ -191,6 +203,13 @@ void Tile::SetOccupiedByPlayer()
 	SetColor(Green);
 }
 
+void Tile::SetFreeOfPlayer()
+{
+	isOccupiedByPlayer = false;
+
+	SetColor(White);
+}
+
 bool Tile::IsOccupiedByGuard() const
 {
 	return isOccupiedByGuard;
@@ -203,11 +222,22 @@ void Tile::SetOccupiedByGuard()
 	SetColor(Red);
 }
 
-void Tile::SetFree()
+void Tile::SetFreeOfGuard()
 {
-	isOccupiedByPlayer = false;
 	isOccupiedByGuard = false;
 
 	SetColor(White);
+}
+
+bool Tile::IsFinish() const
+{
+	return isFinish;
+}
+
+void Tile::SetFinish()
+{
+	isFinish = true;
+
+	SetColor(Blue);
 }
 
