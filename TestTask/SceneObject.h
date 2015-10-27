@@ -11,7 +11,7 @@ public:
 	SceneObject();
 	virtual ~SceneObject();
 
-	virtual void Initiate(HGE* hge, const Vector3& center ) = 0;
+	virtual void Initiate(HGE* hge, const Vector3& center) = 0;
 
 	virtual void HandleEvent(HGE* hge, hgeInputEvent* inputEvent) = 0;
 	virtual void Update(float dt) = 0;
